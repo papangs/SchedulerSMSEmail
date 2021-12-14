@@ -1,0 +1,601 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fortuna.newfswitchclient.newfswitchclient.service.TbTransMapper" >
+    <cache />
+    <resultMap id="resParam" type="com.fortuna.newfswitchclient.newfswitchclient.models.master.TbTrans" >
+        <result column="TXID" property="txid" />
+        <result column="TRANS_DT" property="trans_dt" />
+        <result column="TRANS_TM" property="trans_tm" />
+        <result column="I_MID" property="i_mid" />
+        <result column="PAY_METHOD" property="pay_method" />
+        <result column="STATUS" property="status" />
+        <result column="CURRENCY" property="currency" />
+        <result column="AMT" property="amt" />
+        <result column="REFERENCE_NO" property="reference_no" />
+        <result column="BILLING_ID" property="billing_id" />
+        <result column="BILLING_NM" property="billing_nm" />
+        <result column="BILLING_ADDRESS" property="billing_address" />
+        <result column="BANK_CD" property="bank_cd" />
+        <result column="VACCT_NO" property="vacct_no" />
+        <result column="VACCT_VALID_DT" property="vacct_valid_dt" />
+        <result column="VACCT_VALID_TM" property="vacct_valid_tm" />
+        <result column="DEPOSIT_DT" property="deposit_dt" />
+        <result column="DEPOSIT_TM" property="deposit_tm" />
+        <result column="SETTLMNT_CYCLE" property="settlmnt_cycle" />
+        <result column="CANCEL_DT" property="cancel_dt" />
+        <result column="CANCEL_TM" property="cancel_tm" />
+        <result column="REFUND_CL" property="refund_cl" />
+        <result column="REFUND_DT" property="refund_dt" />
+        <result column="REFUND_TM" property="refund_tm" />
+        <result column="PAYMENT_PERIODE" property="payment_periode" />
+        <result column="PRE_VACCT_NO" property="pre_vacct_no" />
+        <result column="DEPOSIT_AMT" property="deposit_amt" />
+        <result column="MATCH_CL" property="match_cl" />
+        <result column="BILL_REPEAT" property="bill_repeat" />
+        <result column="CHANNEL_TYPE" property="channel_type" />
+        <result column="PROC_SVR" property="proc_svr" />
+        <result column="DEPOSIT_PROC_SVR" property="deposit_proc_svr" />
+        <result column="TRX_DATA" property="trx_data" jdbcType="CLOB" javaType = "java.lang.String"/>
+        <result column="AMT_ADM" property="amt_adm" />
+        <result column="AMT_PENALTY" property="amt_penalty" />
+        <result column="AMT_SETTL" property="amt_settl"/>
+        <result column="CA_CODE" property="ca_code"/>
+        <result column="ADDITIONALDATA" property="additionaldata"/>
+    </resultMap>
+    
+    <select id="findCommitStatus" resultType="TbTrans">
+        SELECT 
+		    TXID,
+		    TRANS_DT,
+		    TRANS_TM,
+		    I_MID,
+		    PAY_METHOD,
+		    STATUS,
+		    CURRENCY,
+		    AMT,
+		    REFERENCE_NO,
+		    BILLING_ID,
+		    BILLING_NM,
+		    BILLING_ADDRESS,
+		    BANK_CD,
+		    VACCT_NO,
+		    VACCT_VALID_DT,
+		    VACCT_VALID_TM,
+		    DEPOSIT_DT,
+		    DEPOSIT_TM,
+		    SETTLMNT_CYCLE,
+		    CANCEL_DT,
+		    CANCEL_TM,
+		    AMT_SETTL,
+		    REFUND_DT,
+		    REFUND_TM,
+		    PAYMENT_PERIODE,
+		    PRE_VACCT_NO,
+		    DEPOSIT_AMT,
+		    MATCH_CL,
+		    BILL_REPEAT,
+		    CHANNEL_TYPE,
+		    PROC_SVR,
+		    DEPOSIT_PROC_SVR,
+		    TRX_DATA,
+		    AMT_ADM,
+		    AMT_PENALTY,
+		    CA_CODE
+		FROM
+		    TB_TRANS
+		WHERE
+		    PAYMENT_PERIODE = #{payment_periode}
+		AND 
+			BILLING_ID = #{billing_id}
+		AND 
+			STATUS = #{status}
+    </select>
+    
+    <select id="findTxId" resultType="TbTrans">
+        SELECT 
+		    TXID,
+		    TRANS_DT,
+		    TRANS_TM,
+		    I_MID,
+		    PAY_METHOD,
+		    STATUS,
+		    CURRENCY,
+		    AMT,
+		    REFERENCE_NO,
+		    BILLING_ID,
+		    BILLING_NM,
+		    BILLING_ADDRESS,
+		    BANK_CD,
+		    VACCT_NO,
+		    VACCT_VALID_DT,
+		    VACCT_VALID_TM,
+		    DEPOSIT_DT,
+		    DEPOSIT_TM,
+		    SETTLMNT_CYCLE,
+		    CANCEL_DT,
+		    CANCEL_TM,
+		    REFUND_CL,
+		    REFUND_DT,
+		    REFUND_TM,
+		    PAYMENT_PERIODE,
+		    PRE_VACCT_NO,
+		    DEPOSIT_AMT,
+		    MATCH_CL,
+		    BILL_REPEAT,
+		    CHANNEL_TYPE,
+		    PROC_SVR,
+		    DEPOSIT_PROC_SVR,
+		    TRX_DATA,
+		    AMT_ADM,
+		    AMT_PENALTY,
+		    CA_CODE
+		FROM
+		    TB_TRANS
+		WHERE
+		    TXID = #{txid}
+    </select>
+    
+    <insert id="insertTxId" parameterType="hashmap">
+        INSERT INTO TB_TRANS (
+		    TXID,
+		    TRANS_DT,
+		    TRANS_TM,
+		    I_MID,
+		    PAY_METHOD,
+		    STATUS,
+		    CURRENCY,
+		    AMT,
+		    REFERENCE_NO,
+		    BILLING_ID,
+		    BILLING_NM,
+		    BILLING_ADDRESS,
+		    BANK_CD,
+		    VACCT_NO,
+		    BILL_REPEAT,
+		    CHANNEL_TYPE,
+		    PROC_SVR,
+		    DEPOSIT_PROC_SVR,
+		    TRX_DATA,
+		    OLD_TRX_DATA,
+		    AMT_ADM,
+		    AMT_PENALTY,
+		    AMT_SETTL,
+		    PRE_VACCT_NO,
+		    PAYMENT_PERIODE,
+		    REFUND_TM,
+		    CA_CODE,
+		    ADDITIONALDATA
+		)
+		VALUES 
+		(
+			#{TXID},
+		    TO_CHAR(SYSDATE, 'YYYYMMDD'),
+		    TO_CHAR(SYSDATE, 'HH24MISS'),
+		    #{I_MID},
+		    #{PAY_METHOD},
+		    #{STATUS},
+		    #{CURRENCY},
+		    #{AMT},
+		    #{REFERENCE_NO},
+		    #{BILLING_ID},
+		    #{BILLING_NM},
+		    #{BILLING_ADDRESS},
+		    #{BANK_CD},
+		    #{VACCT_NO},
+		    #{BILL_REPEAT},
+		    #{CHANNEL_TYPE},
+		    #{PROC_SVR},
+		    '0.0.0.0',
+		    #{TRX_DATA},
+		    #{OLD_TRX_DATA},
+		    #{AMT_ADM},
+		    #{AMT_PENALTY},
+		    #{AMT_SETTL},
+		    #{PRE_VACCT_NO},
+		    #{PAYMENT_PERIODE},
+		    #{REFUND_TM},
+		    #{CA_CODE},
+		    #{ADDITIONALDATA}
+		)
+    </insert>
+    
+    <update id="updateTxIdd" parameterType="hashmap">
+        UPDATE TB_TRANS 
+		    <set>
+		      TRANS_DT = TO_CHAR(SYSDATE, 'YYYYMMDD'), 
+	    	  TRANS_TM = TO_CHAR(SYSDATE, 'HH24MISS'),
+		      <if test="TXID != null">TXID=#{TXID}</if>,
+		      <if test="I_MID != null">I_MID=#{I_MID}</if>,
+		      <if test="PAY_METHOD != null">PAY_METHOD=#{PAY_METHOD}</if>,
+		      <if test="STATUS != null">STATUS=#{STATUS}</if>,
+		      <if test="CURRENCY != null">CURRENCY=#{CURRENCY}</if>,
+		      <if test="AMT != null">AMT=#{AMT}</if>,
+		      <if test="REFERENCE_NO != null">REFERENCE_NO=#{REFERENCE_NO}</if>,
+		      <if test="BILLING_ID != null">BILLING_ID=#{BILLING_ID}</if>,
+		      <if test="BILLING_NM != null">BILLING_NM=#{BILLING_NM}</if>,
+		      <if test="BILLING_ADDRESS != null">BILLING_ADDRESS=#{BILLING_ADDRESS}</if>,
+		      <if test="BANK_CD != null">BANK_CD=#{BANK_CD}</if>,
+		      <if test="VACCT_NO != null">VACCT_NO=#{VACCT_NO}</if>,
+		      <if test="BILL_REPEAT != null">BILL_REPEAT=#{BILL_REPEAT}</if>,
+		      <if test="CHANNEL_TYPE != null">CHANNEL_TYPE=#{CHANNEL_TYPE}</if>,
+		      <if test="PROC_SVR != null">PROC_SVR=#{PROC_SVR}</if>,
+		      <if test="TRX_DATA != null">TRX_DATA=#{TRX_DATA}</if>,
+		      <if test="OLD_TRX_DATA != null">OLD_TRX_DATA=#{OLD_TRX_DATA}</if>,
+		      <if test="AMT_ADM != null">AMT_ADM=#{AMT_ADM}</if>,
+		      <if test="AMT_PENALTY != null">AMT_PENALTY=#{AMT_PENALTY}</if>,
+		      <if test="AMT_SETTL != null">AMT_SETTL=#{AMT_SETTL}</if>,
+		      <if test="PAYMENT_PERIODE != null">PAYMENT_PERIODE=#{PAYMENT_PERIODE}</if>,
+		      <if test="REFUND_TM != null">REFUND_TM=#{REFUND_TM}</if>,
+		      <if test="PRE_VACCT_NO != null">PRE_VACCT_NO=#{PRE_VACCT_NO}</if>,
+		      <if test="CA_CODE != null">CA_CODE=#{CA_CODE}</if>,
+		      <if test="ADDITIONALDATA != null">ADDITIONALDATA=#{ADDITIONALDATA}</if>
+		    </set>
+		WHERE 
+			TXID = #{TXID_OLD}
+		AND
+			PAYMENT_PERIODE = #{PAYMENT_PERIODE}
+		AND
+			REFUND_TM = #{REFUND_TM}
+		AND
+			STATUS = #{STATUS}
+		
+    </update>
+    
+    <update id="updateTxId0203" parameterType="hashmap">
+        UPDATE TB_TRANS 
+		    <set>
+		      TRANS_DT = TO_CHAR(SYSDATE, 'YYYYMMDD'), 
+	    	  TRANS_TM = TO_CHAR(SYSDATE, 'HH24MISS'),
+		      <if test="TXID != null">TXID=#{TXID}</if>,
+		      <if test="I_MID != null">I_MID=#{I_MID}</if>,
+		      <if test="PAY_METHOD != null">PAY_METHOD=#{PAY_METHOD}</if>,
+		      <if test="STATUS != null">STATUS=#{STATUS}</if>,
+		      <if test="CURRENCY != null">CURRENCY=#{CURRENCY}</if>,
+		      <if test="AMT != null">AMT=#{AMT}</if>,
+		      <if test="REFERENCE_NO != null">REFERENCE_NO=#{REFERENCE_NO}</if>,
+		      <if test="BILLING_ID != null">BILLING_ID=#{BILLING_ID}</if>,
+		      <if test="BILLING_NM != null">BILLING_NM=#{BILLING_NM}</if>,
+		      <if test="BILLING_ADDRESS != null">BILLING_ADDRESS=#{BILLING_ADDRESS}</if>,
+		      <if test="BANK_CD != null">BANK_CD=#{BANK_CD}</if>,
+		      <if test="VACCT_NO != null">VACCT_NO=#{VACCT_NO}</if>,
+		      <if test="BILL_REPEAT != null">BILL_REPEAT=#{BILL_REPEAT}</if>,
+		      <if test="CHANNEL_TYPE != null">CHANNEL_TYPE=#{CHANNEL_TYPE}</if>,
+		      <if test="PROC_SVR != null">PROC_SVR=#{PROC_SVR}</if>,
+		      <if test="TRX_DATA != null">TRX_DATA=#{TRX_DATA}</if>,
+		      <if test="OLD_TRX_DATA != null">OLD_TRX_DATA=#{OLD_TRX_DATA}</if>,
+		      <if test="AMT_ADM != null">AMT_ADM=#{AMT_ADM}</if>,
+		      <if test="AMT_PENALTY != null">AMT_PENALTY=#{AMT_PENALTY}</if>,
+		      <if test="AMT_SETTL != null">AMT_SETTL=#{AMT_SETTL}</if>,
+		      <if test="PAYMENT_PERIODE != null">PAYMENT_PERIODE=#{PAYMENT_PERIODE}</if>,
+		      <if test="REFUND_TM != null">REFUND_TM=#{REFUND_TM}</if>,
+		      <if test="PRE_VACCT_NO != null">PRE_VACCT_NO=#{PRE_VACCT_NO}</if>,
+		      <if test="CA_CODE != null">CA_CODE=#{CA_CODE}</if>,
+		      <if test="ADDITIONALDATA != null">ADDITIONALDATA=#{ADDITIONALDATA}</if>
+		    </set>
+		WHERE 
+			TXID = #{TXID_OLD}
+		AND
+			PAYMENT_PERIODE = #{PAYMENT_PERIODE}
+		AND
+			REFUND_TM = #{REFUND_TM}
+		AND
+			STATUS = '02'
+		
+    </update>
+    
+    <update id="updateTxId0403" parameterType="hashmap">
+        UPDATE TB_TRANS 
+		    <set>
+		      TRANS_DT = TO_CHAR(SYSDATE, 'YYYYMMDD'), 
+	    	  TRANS_TM = TO_CHAR(SYSDATE, 'HH24MISS'),
+		      <if test="TXID != null">TXID=#{TXID}</if>,
+		      <if test="I_MID != null">I_MID=#{I_MID}</if>,
+		      <if test="PAY_METHOD != null">PAY_METHOD=#{PAY_METHOD}</if>,
+		      <if test="STATUS != null">STATUS=#{STATUS}</if>,
+		      <if test="CURRENCY != null">CURRENCY=#{CURRENCY}</if>,
+		      <if test="AMT != null">AMT=#{AMT}</if>,
+		      <if test="REFERENCE_NO != null">REFERENCE_NO=#{REFERENCE_NO}</if>,
+		      <if test="BILLING_ID != null">BILLING_ID=#{BILLING_ID}</if>,
+		      <if test="BILLING_NM != null">BILLING_NM=#{BILLING_NM}</if>,
+		      <if test="BILLING_ADDRESS != null">BILLING_ADDRESS=#{BILLING_ADDRESS}</if>,
+		      <if test="BANK_CD != null">BANK_CD=#{BANK_CD}</if>,
+		      <if test="VACCT_NO != null">VACCT_NO=#{VACCT_NO}</if>,
+		      <if test="BILL_REPEAT != null">BILL_REPEAT=#{BILL_REPEAT}</if>,
+		      <if test="CHANNEL_TYPE != null">CHANNEL_TYPE=#{CHANNEL_TYPE}</if>,
+		      <if test="PROC_SVR != null">PROC_SVR=#{PROC_SVR}</if>,
+		      <if test="TRX_DATA != null">TRX_DATA=#{TRX_DATA}</if>,
+		      <if test="OLD_TRX_DATA != null">OLD_TRX_DATA=#{OLD_TRX_DATA}</if>,
+		      <if test="AMT_ADM != null">AMT_ADM=#{AMT_ADM}</if>,
+		      <if test="AMT_PENALTY != null">AMT_PENALTY=#{AMT_PENALTY}</if>,
+		      <if test="AMT_SETTL != null">AMT_SETTL=#{AMT_SETTL}</if>,
+		      <if test="PAYMENT_PERIODE != null">PAYMENT_PERIODE=#{PAYMENT_PERIODE}</if>,
+		      <if test="REFUND_TM != null">REFUND_TM=#{REFUND_TM}</if>,
+		      <if test="PRE_VACCT_NO != null">PRE_VACCT_NO=#{PRE_VACCT_NO}</if>,
+		      <if test="CA_CODE != null">CA_CODE=#{CA_CODE}</if>,
+		      <if test="ADDITIONALDATA != null">ADDITIONALDATA=#{ADDITIONALDATA}</if>
+		    </set>
+		WHERE 
+			TXID = #{TXID_OLD}
+		AND
+			PAYMENT_PERIODE = #{PAYMENT_PERIODE}
+		AND
+			REFUND_TM = #{REFUND_TM}
+		AND
+			STATUS = '04'
+		
+    </update>
+    
+    <select id="findTxVacctNo" resultType="TbTrans">
+        SELECT 
+		    TXID,
+		    TRANS_DT,
+		    TRANS_TM,
+		    I_MID,
+		    PAY_METHOD,
+		    STATUS,
+		    CURRENCY,
+		    AMT,
+		    REFERENCE_NO,
+		    BILLING_ID,
+		    BILLING_NM,
+		    BILLING_ADDRESS,
+		    BANK_CD,
+		    VACCT_NO,
+		    DEPOSIT_DT,
+		    DEPOSIT_TM,
+		    DEPOSIT_AMT,
+		    BILL_REPEAT,
+		    CHANNEL_TYPE,
+		    PROC_SVR,
+		    DEPOSIT_PROC_SVR,
+		    TRX_DATA,
+		    AMT_ADM,
+		    AMT_PENALTY,
+		    PAYMENT_PERIODE,
+		    REFUND_TM,
+		    PRE_VACCT_NO,
+		    CA_CODE
+		FROM
+		    TB_TRANS
+		WHERE
+		    VACCT_NO = #{VACCT_NO} AND
+		    BANK_CD = #{BANK_CD} AND
+		    PAYMENT_PERIODE = #{PAYMENT_PERIODE} AND
+		    REFUND_TM = #{REFUND_TM}
+    </select>
+    
+    <select id="findTxVacctNos" resultType="TbTrans">
+        SELECT 
+		    TXID,
+		    TRANS_DT,
+		    TRANS_TM,
+		    I_MID,
+		    PAY_METHOD,
+		    STATUS,
+		    CURRENCY,
+		    AMT,
+		    REFERENCE_NO,
+		    BILLING_ID,
+		    BILLING_NM,
+		    BILLING_ADDRESS,
+		    BANK_CD,
+		    VACCT_NO,
+		    DEPOSIT_DT,
+		    DEPOSIT_TM,
+		    DEPOSIT_AMT,
+		    BILL_REPEAT,
+		    CHANNEL_TYPE,
+		    PROC_SVR,
+		    DEPOSIT_PROC_SVR,
+		    TRX_DATA,
+		    AMT_ADM,
+		    AMT_PENALTY,
+		    PAYMENT_PERIODE,
+		    PRE_VACCT_NO,
+		    CA_CODE
+		FROM
+		    TB_TRANS
+		WHERE
+		    VACCT_NO = #{VACCT_NO} AND
+		    BANK_CD = #{BANK_CD} AND
+		    PAYMENT_PERIODE = #{PAYMENT_PERIODE} AND
+		    STATUS = #{STATUS}
+    </select>
+
+	<select id="findTxIds" resultType="TbTrans">
+        SELECT 
+		    TXID,
+		    TRANS_DT,
+		    TRANS_TM,
+		    I_MID,
+		    PAY_METHOD,
+		    STATUS,
+		    CURRENCY,
+		    AMT,
+		    REFERENCE_NO,
+		    BILLING_ID,
+		    BILLING_NM,
+		    BILLING_ADDRESS,
+		    BANK_CD,
+		    VACCT_NO,
+		    VACCT_VALID_DT,
+		    VACCT_VALID_TM,
+		    DEPOSIT_DT,
+		    DEPOSIT_TM,
+		    SETTLMNT_CYCLE,
+		    CANCEL_DT,
+		    CANCEL_TM,
+		    REFUND_DT,
+		    REFUND_TM,
+		    PAYMENT_PERIODE,
+		    PRE_VACCT_NO,
+		    DEPOSIT_AMT,
+		    MATCH_CL,
+		    BILL_REPEAT,
+		    CHANNEL_TYPE,
+		    PROC_SVR,
+		    DEPOSIT_PROC_SVR,
+		    TRX_DATA,
+		    AMT_ADM,
+		    AMT_PENALTY,
+		    CA_CODE
+		FROM
+		    TB_TRANS
+		WHERE
+		    BILLING_ID = #{billing_id} 
+		    AND REFUND_TM = #{refundtm}
+		    AND STATUS = #{status}
+		    AND CA_CODE = #{caid}
+    </select>
+    
+    <update id="updateTxId" parameterType="hashmap">
+        UPDATE TB_TRANS 
+        SET 
+		    <set>
+		      TRANS_DT = TO_CHAR(SYSDATE, 'YYYYMMDD'), 
+	    	  TRANS_TM = TO_CHAR(SYSDATE, 'HH24MISS'),
+		      <if test="DEPOSIT_DT != null">DEPOSIT_DT=TO_CHAR(SYSDATE, 'YYYYMMDD'),</if>
+		      <if test="DEPOSIT_TM != null">DEPOSIT_TM=TO_CHAR(SYSDATE, 'HH24MISS'),</if>
+		      <if test="DEPOSIT_AMT != null">DEPOSIT_AMT=#{DEPOSIT_AMT},</if>
+		      <if test="DEPOSIT_PROC_SVR != null">DEPOSIT_PROC_SVR=#{DEPOSIT_PROC_SVR},</if>
+		      <if test="STATUS != null">STATUS=#{STATUS}</if>
+		    </set>
+		WHERE 
+			TXID = #{TXID}
+		AND
+			PAYMENT_PERIODE = #{PAYMENT_PERIODE}
+		AND
+			REFUND_TM = #{REFUND_TM}
+		
+    </update>
+    
+    <select id="findTx" resultType="TbTrans">
+        SELECT 
+		    TXID,
+		    TRANS_DT,
+		    TRANS_TM,
+		    I_MID,
+		    PAY_METHOD,
+		    STATUS,
+		    CURRENCY,
+		    AMT,
+		    REFERENCE_NO,
+		    BILLING_ID,
+		    BILLING_NM,
+		    BILLING_ADDRESS,
+		    BANK_CD,
+		    VACCT_NO,
+		    DEPOSIT_DT,
+		    DEPOSIT_TM,
+		    DEPOSIT_AMT,
+		    BILL_REPEAT,
+		    CHANNEL_TYPE,
+		    PROC_SVR,
+		    DEPOSIT_PROC_SVR,
+		    TRX_DATA,
+		    AMT_ADM,
+		    AMT_PENALTY,
+		    PAYMENT_PERIODE,
+		    REFUND_TM,
+		    PRE_VACCT_NO,
+		    CA_CODE
+		FROM
+		    TB_TRANS
+		WHERE
+		    BILLING_ID = #{BILLING_ID} AND
+		    BANK_CD = #{BANK_CD} AND
+		    PAYMENT_PERIODE = #{PAYMENT_PERIODE} AND
+		    REFUND_TM = #{REFUND_TM} AND
+		    STATUS = #{STATUS}
+    </select>
+    
+    <delete id="deleteByTxId" parameterType="String">
+      DELETE FROM TB_TRANS WHERE TXID = #{id}
+   	</delete>
+   
+    <select id="findTxBeforePayment" resultType="TbTrans">
+        SELECT 
+		    TXID,
+		    TRANS_DT,
+		    TRANS_TM,
+		    I_MID,
+		    PAY_METHOD,
+		    STATUS,
+		    CURRENCY,
+		    AMT,
+		    REFERENCE_NO,
+		    BILLING_ID,
+		    BILLING_NM,
+		    BILLING_ADDRESS,
+		    BANK_CD,
+		    VACCT_NO,
+		    DEPOSIT_DT,
+		    DEPOSIT_TM,
+		    DEPOSIT_AMT,
+		    BILL_REPEAT,
+		    CHANNEL_TYPE,
+		    PROC_SVR,
+		    DEPOSIT_PROC_SVR,
+		    TRX_DATA,
+		    AMT_ADM,
+		    AMT_PENALTY,
+		    PAYMENT_PERIODE,
+		    REFUND_TM,
+		    PRE_VACCT_NO,
+		    CA_CODE
+		FROM
+		    TB_TRANS
+		WHERE
+		    BILLING_ID = #{BILLING_ID} AND
+		    BANK_CD = #{BANK_CD} AND
+		    STATUS IN(03,02)
+    </select>
+   
+   <delete id="deleteByTxIdBeforePayment" parameterType="hashmap">
+      DELETE FROM TB_TRANS WHERE 
+      BILLING_ID = #{BILLING_ID} AND 
+      BANK_CD = #{BANK_CD} AND 
+      STATUS IN(03,02)
+   </delete>
+   
+   <select id="find0100Commit" resultType="TbTrans">
+        SELECT 
+		    TXID,
+		    TRANS_DT,
+		    TRANS_TM,
+		    I_MID,
+		    PAY_METHOD,
+		    STATUS,
+		    CURRENCY,
+		    AMT,
+		    REFERENCE_NO,
+		    BILLING_ID,
+		    BILLING_NM,
+		    BILLING_ADDRESS,
+		    BANK_CD,
+		    VACCT_NO,
+		    DEPOSIT_DT,
+		    DEPOSIT_TM,
+		    DEPOSIT_AMT,
+		    BILL_REPEAT,
+		    CHANNEL_TYPE,
+		    PROC_SVR,
+		    DEPOSIT_PROC_SVR,
+		    TRX_DATA,
+		    AMT_ADM,
+		    AMT_PENALTY,
+		    PAYMENT_PERIODE,
+		    REFUND_TM,
+		    PRE_VACCT_NO,
+		    CA_CODE
+		FROM
+		    TB_TRANS
+		WHERE
+		    BILLING_ID = #{BILLING_ID} AND
+		    BANK_CD = #{BANK_CD} AND
+		    PAYMENT_PERIODE = #{PAYMENT_PERIODE} AND
+		    REFUND_TM = #{REFUND_TM} AND
+		    STATUS IN(01,00)
+    </select>
+</mapper> -->
