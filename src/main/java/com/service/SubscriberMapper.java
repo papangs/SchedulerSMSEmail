@@ -9,7 +9,7 @@ import java.util.HashMap;
 @Mapper
 public interface SubscriberMapper {
 
-	public Subscriber findSubcriber(String txid) throws Exception;
+	public Subscriber findSubcriber(HashMap<String, Object> params) throws Exception;
     
     public Integer insertSubcriber(HashMap<String, Object> params) throws Exception;
 

@@ -11,7 +11,7 @@
         <result column="type" property="type" />
     </resultMap>
     
-    <select id="findSubcriber" resultType="TbTrans">
+    <select id="findSubcriber" resultType="Subscriber">
         SELECT 
 		    id,
 		    nama,
