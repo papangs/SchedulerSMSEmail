@@ -41,7 +41,7 @@ public class SubcriberController {
 			responseObjectSubscriber.setRescode("99");
 			responseObjectSubscriber.setRescodedesc("Other Error");
 			responseSubscriber.setObject(responseObjectSubscriber);
-			responseSubscriber.setJson(json);
+//			responseSubscriber.setJson(json);
 
 			return responseSubscriber;
 		}
