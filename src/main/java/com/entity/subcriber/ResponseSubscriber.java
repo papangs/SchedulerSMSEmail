@@ -1,7 +1,5 @@
 package com.entity.subcriber;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ResponseSubscriber {
@@ -10,7 +8,7 @@ public class ResponseSubscriber {
 	private ResponseObjectSubscriber object;
 
 	@JsonProperty("Json")
-	private List<ResponseJsonSubscriber> Json;
+	private ResponseJsonSubscriber Json;
 
 	public ResponseObjectSubscriber getObject() {
 		return object;
@@ -20,11 +18,11 @@ public class ResponseSubscriber {
 		this.object = object;
 	}
 
-	public List<ResponseJsonSubscriber> getJson() {
+	public ResponseJsonSubscriber getJson() {
 		return Json;
 	}
 
-	public void setJson(List<ResponseJsonSubscriber> json) {
+	public void setJson(ResponseJsonSubscriber json) {
 		Json = json;
 	}
 
