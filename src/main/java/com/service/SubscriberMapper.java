@@ -2,7 +2,7 @@ package com.service;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.entity.Subscriber;
+import com.entity.master.Subscriber;
 
 import java.util.HashMap;
 

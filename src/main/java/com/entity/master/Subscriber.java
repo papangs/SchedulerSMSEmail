@@ -1,4 +1,4 @@
-package com.entity;
+package com.entity.master;
 
 public class Subscriber {
 
