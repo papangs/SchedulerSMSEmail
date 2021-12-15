@@ -1,7 +1,5 @@
 package com;
 
-import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
-import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.junit.Test;
 
 class SpringBootMybatisApplicationTests {

@@ -4,26 +4,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ResponseSubscriber {
 
-	private ResponseObjectSubscriber object;
+	private ResponseObjectSubscriber objectSubscriber;
 
-	@JsonProperty("JsonData")
-	private ResponseJsonSubscriber JsonData;
+	@JsonProperty("jsonSubscriber")
+	private ResponseJsonSubscriber jsonSubscriber;
 
-	public ResponseObjectSubscriber getObject() {
-		return object;
+	public ResponseObjectSubscriber getObjectSubscriber() {
+		return objectSubscriber;
 	}
 
-	public void setObject(ResponseObjectSubscriber object) {
-		this.object = object;
+	public void setObjectSubscriber(ResponseObjectSubscriber objectSubscriber) {
+		this.objectSubscriber = objectSubscriber;
 	}
 
-	public ResponseJsonSubscriber getJsonData() {
-		return JsonData;
+	public ResponseJsonSubscriber getJsonSubscriber() {
+		return jsonSubscriber;
 	}
 
-	public void setJsonData(ResponseJsonSubscriber jsonData) {
-		JsonData = jsonData;
+	public void setJsonSubscriber(ResponseJsonSubscriber jsonSubscriber) {
+		this.jsonSubscriber = jsonSubscriber;
 	}
-
+	
 	
 }

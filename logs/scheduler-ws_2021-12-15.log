@@ -1,0 +1,50 @@
+2021-12-15 09:28:16.911[                 ]INFO [otMybatisApplication:648]No active profile set, falling back to default profiles: default
+2021-12-15 09:28:20.158[                 ]INFO [otMybatisApplication:59]Started SpringBootMybatisApplication in 6.782 seconds (JVM running for 7.775)
+2021-12-15 09:28:31.539[                 ]INFO [.SubcriberController:39][Scheaduler - ] Start Add Data
+2021-12-15 09:28:31.554[                 ]INFO [.SubcriberController:143][Scheaduler - ] Other Error
+2021-12-15 09:30:09.487[                 ]INFO [.SubcriberController:39][Scheaduler - ] Start Add Data
+2021-12-15 09:30:09.489[                 ]INFO [.SubcriberController:83][Scheaduler - ] Error Type to SMS
+2021-12-15 09:31:18.563[                 ]INFO [otMybatisApplication:648]No active profile set, falling back to default profiles: default
+2021-12-15 09:31:22.145[                 ]INFO [otMybatisApplication:59]Started SpringBootMybatisApplication in 7.228 seconds (JVM running for 8.454)
+2021-12-15 09:31:35.536[                 ]INFO [.SubcriberController:40][Scheaduler - ] Start Add Data
+2021-12-15 09:31:35.549[                 ]INFO [.SubcriberController:84][Scheaduler - ] Error Type to SMS
+2021-12-15 09:32:02.030[                 ]INFO [.SubcriberController:40][Scheaduler - ] Start Add Data
+2021-12-15 09:32:02.032[                 ]INFO [.SubcriberController:238][Scheaduler - ] insert to subcriber : {nama=pank, nohp=0838323241213, id=SUB20211215093202466738, tipe=EMAIL, email=irawan@gmail.com}
+2021-12-15 09:32:02.549[                 ]INFO [.SubcriberController:260][Scheaduler - ] insert to subcriber success.
+2021-12-15 09:32:02.557[                 ]INFO [.SubcriberController:110][Scheaduler - ] Success
+2021-12-15 09:32:40.096[                 ]INFO [otMybatisApplication:648]No active profile set, falling back to default profiles: default
+2021-12-15 09:32:44.073[                 ]INFO [otMybatisApplication:59]Started SpringBootMybatisApplication in 7.719 seconds (JVM running for 8.969)
+2021-12-15 09:32:44.173[                 ]INFO [.SubcriberController:158][Scheaduler - ] Start Get Data
+2021-12-15 09:32:44.569[                 ]INFO [.SubcriberController:173][Scheaduler - ] Success
+2021-12-15 09:33:10.129[                 ]INFO [.SubcriberController:40][Scheaduler - ] Start Add Data
+2021-12-15 09:33:10.130[                 ]INFO [.SubcriberController:90][Scheaduler - ] Error Type to Email
+2021-12-15 09:33:54.815[                 ]INFO [.SubcriberController:40][Scheaduler - ] Start Add Data
+2021-12-15 09:33:54.817[                 ]INFO [.SubcriberController:90][Scheaduler - ] Error Type to Email
+2021-12-15 09:35:09.748[                 ]INFO [otMybatisApplication:648]No active profile set, falling back to default profiles: default
+2021-12-15 09:35:13.243[                 ]INFO [otMybatisApplication:59]Started SpringBootMybatisApplication in 7.253 seconds (JVM running for 8.608)
+2021-12-15 09:37:50.352[                 ]INFO [.SubcriberController:40][Scheaduler - ] Start Add Data
+2021-12-15 09:37:50.365[                 ]INFO [.SubcriberController:90][Scheaduler - ] Error Type to Email
+2021-12-15 09:38:46.668[                 ]INFO [.SubcriberController:40][Scheaduler - ] Start Add Data
+2021-12-15 09:38:46.669[                 ]INFO [.SubcriberController:90][Scheaduler - ] Error Type to Email
+2021-12-15 09:49:52.320[                 ]INFO [otMybatisApplication:648]No active profile set, falling back to default profiles: default
+2021-12-15 09:49:55.741[                 ]INFO [otMybatisApplication:59]Started SpringBootMybatisApplication in 7.192 seconds (JVM running for 8.474)
+2021-12-15 09:50:08.782[                 ]INFO [.SubcriberController:39][Scheaduler - ] Start Add Data
+2021-12-15 09:50:08.789[                 ]INFO [.SubcriberController:89][Scheaduler - ] Error Type to Email
+2021-12-15 09:55:55.615[                 ]INFO [otMybatisApplication:648]No active profile set, falling back to default profiles: default
+2021-12-15 09:55:59.177[                 ]INFO [otMybatisApplication:59]Started SpringBootMybatisApplication in 7.312 seconds (JVM running for 8.503)
+2021-12-15 09:56:15.190[                 ]INFO [.SubcriberController:103][Scheaduler - ] Start Add Data
+2021-12-15 09:56:15.198[                 ]INFO [.SubcriberController:84][Scheaduler - ] Error Type to Email
+2021-12-15 09:57:07.366[                 ]INFO [.SubcriberController:103][Scheaduler - ] Start Add Data
+2021-12-15 09:57:11.363[                 ]INFO [.SubcriberController:84][Scheaduler - ] Error Type to Email
+2021-12-15 10:01:49.298[                 ]INFO [otMybatisApplication:50]Starting SpringBootMybatisApplication on DESKTOP-RKJ18PE with PID 7360 (E:\SWITCHING_PAPANG\Java\Scheduler\SchedulerSMSEmail\target\classes started by Mr Papang in E:\SWITCHING_PAPANG\Java\Scheduler\SchedulerSMSEmail)
+2021-12-15 10:01:49.305[                 ]INFO [otMybatisApplication:648]No active profile set, falling back to default profiles: default
+2021-12-15 10:03:17.862[                 ]INFO [otMybatisApplication:50]Starting SpringBootMybatisApplication on DESKTOP-RKJ18PE with PID 17956 (E:\SWITCHING_PAPANG\Java\Scheduler\SchedulerSMSEmail\target\classes started by Mr Papang in E:\SWITCHING_PAPANG\Java\Scheduler\SchedulerSMSEmail)
+2021-12-15 10:03:17.869[                 ]INFO [otMybatisApplication:648]No active profile set, falling back to default profiles: default
+2021-12-15 10:03:20.861[                 ]INFO [otMybatisApplication:59]Started SpringBootMybatisApplication in 3.506 seconds (JVM running for 4.533)
+2021-12-15 10:03:40.440[                 ]INFO [.SubcriberController:103][Scheaduler - ] Start Add Data
+2021-12-15 10:03:44.476[                 ]INFO [.SubcriberController:84][Scheaduler - ] Error Type to Email
+2021-12-15 10:07:02.600[                 ]INFO [otMybatisApplication:55]Starting SpringBootMybatisApplication on DESKTOP-RKJ18PE with PID 7612 (E:\SWITCHING_PAPANG\Java\Scheduler\SchedulerSMSEmail\target\classes started by Mr Papang in E:\SWITCHING_PAPANG\Java\Scheduler\SchedulerSMSEmail)
+2021-12-15 10:07:02.606[                 ]INFO [otMybatisApplication:651]No active profile set, falling back to default profiles: default
+2021-12-15 10:07:05.470[                 ]INFO [otMybatisApplication:61]Started SpringBootMybatisApplication in 3.392 seconds (JVM running for 4.51)
+2021-12-15 10:07:10.662[                 ]INFO [.SubcriberController:103][Scheaduler - ] Start Add Data
+2021-12-15 10:07:10.724[                 ]INFO [.SubcriberController:84][Scheaduler - ] Error Type to Email
