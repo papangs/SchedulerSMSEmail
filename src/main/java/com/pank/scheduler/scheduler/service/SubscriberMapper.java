@@ -8,6 +8,8 @@ import java.util.HashMap;
 
 @Mapper
 public interface SubscriberMapper {
+	
+    public Subscriber findSubcriberByIdnName(HashMap<String, Object> params) throws Exception;
 
     public Subscriber findSubcriberById(String id) throws Exception;
     

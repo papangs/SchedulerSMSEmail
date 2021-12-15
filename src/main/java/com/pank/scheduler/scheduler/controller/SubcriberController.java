@@ -19,6 +19,7 @@ import com.pank.scheduler.scheduler.entity.master.Subscriber;
 import com.pank.scheduler.scheduler.entity.subcriber.RequestSubscriber;
 import com.pank.scheduler.scheduler.entity.subcriber.ResponseJsonSubscriber;
 import com.pank.scheduler.scheduler.entity.subcriber.ResponseObjectSubscriber;
+import com.pank.scheduler.scheduler.entity.subcriber.ResponseObjectSubscriberDelete;
 import com.pank.scheduler.scheduler.entity.subcriber.ResponseSubscriber;
 import com.pank.scheduler.scheduler.service.SubscriberMapper;
 
@@ -36,6 +37,37 @@ public class SubcriberController {
 	private String responseCode = null;
 	private String responseDesc = null;
 
+	public boolean validateDelete(RequestSubscriber requestSubscriber) {
+
+		try {
+
+			if (requestSubscriber.getNama().equals("") || requestSubscriber.getNama().isEmpty()
+					|| requestSubscriber.getNama().equals(null)) {
+
+				logger.info("[Scheaduler - ] Error Nama");
+				responseCode = ConstantCode.ErrCode01;
+				responseDesc = ConstantCode.ErrCode01Desc;
+				return false;
+
+			} else if (requestSubscriber.getId().equals("") || requestSubscriber.getId().isEmpty()
+					|| requestSubscriber.getId().equals(null)) {
+
+				logger.info("[Scheaduler - ] Error ID Wrong");
+				responseCode = ConstantCode.ErrCode56;
+				responseDesc = ConstantCode.ErrCode56Desc;
+				return false;
+
+			}
+
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+	
 	public boolean validate(RequestSubscriber requestSubscriber) {
 
 		try {
@@ -112,7 +144,7 @@ public class SubcriberController {
 
 			if (validate) {
 
-				Integer iTrans = insertTrans(requestSubscriber);
+				Integer iTrans = insert(requestSubscriber);
 
 				if (iTrans.equals(222)) {
 
@@ -193,9 +225,9 @@ public class SubcriberController {
 			requestSubscriber = mapper.readValue(body, RequestSubscriber.class);
 
 			Subscriber cTrans = subscriberMapper.findSubcriberById(requestSubscriber.getId());
-			
+
 			if (cTrans != null) {
-				
+
 				logger.info("[Scheaduler - ] Success");
 				responseObjectSubscriber.setRescode(ConstantCode.ErrCode00);
 				responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode00Desc);
@@ -210,19 +242,19 @@ public class SubcriberController {
 				responseSubscriber.setJsonSubscriber(responseJsonSubscriber);
 
 				return responseSubscriber;
-			
-			}else {
+
+			} else {
 
 				responseObjectSubscriber.setRescode(ConstantCode.ErrCode56);
 				responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode56Desc);
-				
+
 			}
-			
+
 			responseSubscriber.setObjectSubscriber(responseObjectSubscriber);
 			responseSubscriber.setJsonSubscriber(responseJsonSubscriber);
 
 			return responseSubscriber;
-			
+
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -231,32 +263,156 @@ public class SubcriberController {
 			responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode99Desc);
 			responseSubscriber.setObjectSubscriber(responseObjectSubscriber);
 			responseSubscriber.setJsonSubscriber(responseJsonSubscriber);
-			
+
 			return responseSubscriber;
 		}
 
 	}
 
-//	@RequestMapping(value = "/deleteData", method = RequestMethod.POST)
-//	public String deleteData(@RequestBody String body) {
-//
-//		logger.info("[Scheaduler - ] Start Delete Data");
-//		
-//		return body;
-//	}
-//	
-//	@RequestMapping(value = "/updateData", method = RequestMethod.POST)
-//	public String updateData(@RequestBody String body) {
-//
-//		logger.info("[Scheaduler - ] Start Update Data");
-//		
-//		return body;
-//	}
+	@RequestMapping(value = "/deleteData", method = RequestMethod.POST)
+	public ResponseObjectSubscriberDelete deleteData(@RequestBody String body) {
 
-	// ============================================== FUNCTION DATABASE
-	// =============================================
+		logger.info("[Scheaduler - ] Start Delete Data");
 
-	public Integer insertTrans(RequestSubscriber requestSubscriber) {
+		RequestSubscriber requestSubscriber = new RequestSubscriber();
+
+		ResponseObjectSubscriberDelete responseObjectSubscriber = new ResponseObjectSubscriberDelete();
+
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+
+			requestSubscriber = mapper.readValue(body, RequestSubscriber.class);
+
+			Boolean validate = validateDelete(requestSubscriber);
+
+			if (validate) {
+
+				Integer iTrans = delete(requestSubscriber);
+
+				if (iTrans.equals(222)) {
+
+					logger.info("[Scheaduler - ] Success");
+					responseObjectSubscriber.setRescode(ConstantCode.ErrCode00);
+					responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode00Desc);
+
+					return responseObjectSubscriber;
+
+				} else {
+
+					logger.info("[Scheaduler - ] Error when update table subcriber.");
+					responseObjectSubscriber.setRescode(ConstantCode.ErrCode63);
+					responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode63Desc);
+
+				}
+
+			} else {
+
+				responseObjectSubscriber.setRescode(responseCode);
+				responseObjectSubscriber.setRescodedesc(responseDesc);
+
+			}
+
+			return responseObjectSubscriber;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			logger.info("[Scheaduler - ] Other Error");
+			responseObjectSubscriber.setRescode(ConstantCode.ErrCode99);
+			responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode99Desc);
+
+			return responseObjectSubscriber;
+		}
+	}
+
+	@RequestMapping(value = "/updateData", method = RequestMethod.POST)
+	public ResponseSubscriber updateData(@RequestBody String body) {
+
+		logger.info("[Scheaduler - ] Start Update Data");
+
+		RequestSubscriber requestSubscriber = new RequestSubscriber();
+
+		ResponseSubscriber responseSubscriber = new ResponseSubscriber();
+		ResponseObjectSubscriber responseObjectSubscriber = new ResponseObjectSubscriber();
+		ResponseJsonSubscriber responseJsonSubscriber = new ResponseJsonSubscriber();
+
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+
+			requestSubscriber = mapper.readValue(body, RequestSubscriber.class);
+
+			Boolean validate = validate(requestSubscriber);
+
+			if (validate) {
+
+				Integer iTrans = update(requestSubscriber);
+
+				if (iTrans.equals(222)) {
+
+					Subscriber cTrans = subscriberMapper.findSubcriberById(requestSubscriber.getId());
+
+					if (cTrans == null) {
+
+						logger.info("[Scheaduler - ] Error Data is null");
+						responseObjectSubscriber.setRescode(ConstantCode.ErrCode99);
+						responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode99Desc);
+
+					} else {
+
+						logger.info("[Scheaduler - ] Success");
+						responseObjectSubscriber.setRescode(ConstantCode.ErrCode00);
+						responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode00Desc);
+
+						responseJsonSubscriber.setId(cTrans.getId());
+						responseJsonSubscriber.setNama(cTrans.getNama());
+						responseJsonSubscriber.setEmail(cTrans.getEmail());
+						responseJsonSubscriber.setNohp(cTrans.getNohp());
+						responseJsonSubscriber.setTipe(cTrans.getTipe());
+
+						responseSubscriber.setObjectSubscriber(responseObjectSubscriber);
+						responseSubscriber.setJsonSubscriber(responseJsonSubscriber);
+
+						return responseSubscriber;
+					}
+
+				} else {
+
+					logger.info("[Scheaduler - ] Error when update table subcriber.");
+					responseObjectSubscriber.setRescode(ConstantCode.ErrCode63);
+					responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode63Desc);
+
+				}
+
+			} else {
+
+				responseObjectSubscriber.setRescode(responseCode);
+				responseObjectSubscriber.setRescodedesc(responseDesc);
+
+			}
+
+			responseSubscriber.setObjectSubscriber(responseObjectSubscriber);
+			responseSubscriber.setJsonSubscriber(responseJsonSubscriber);
+
+			return responseSubscriber;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			logger.info("[Scheaduler - ] Other Error");
+			responseObjectSubscriber.setRescode(ConstantCode.ErrCode99);
+			responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode99Desc);
+			responseSubscriber.setObjectSubscriber(responseObjectSubscriber);
+			responseSubscriber.setJsonSubscriber(responseJsonSubscriber);
+
+			return responseSubscriber;
+		}
+	}
+
+	// ============================================== FUNCTION DATABASE =============================================
+
+	public Integer insert(RequestSubscriber requestSubscriber) {
 
 		try {
 
@@ -306,6 +462,92 @@ public class SubcriberController {
 		} catch (Exception e) {
 
 			logger.info("[Scheaduler - ] insert to subcriber fail");
+			e.printStackTrace();
+			return 111;
+
+		}
+	}
+
+	public Integer update(RequestSubscriber requestSubscriber) {
+
+		try {
+
+			HashMap<String, Object> inp = new HashMap<String, Object>();
+			HashMap<String, Object> inp1 = new HashMap<String, Object>();
+
+			inp.put("id", requestSubscriber.getId());
+			inp.put("nama", requestSubscriber.getNama());
+			inp.put("email", requestSubscriber.getEmail());
+			inp.put("nohp", requestSubscriber.getNohp());
+			inp.put("tipe", requestSubscriber.getTipe());
+
+			logger.info("[Scheaduler - ] update to subcriber : " + inp);
+
+			Subscriber cTrans = subscriberMapper.findSubcriber(inp);
+
+			if (cTrans != null) {
+
+				inp1.put("id", cTrans.getId());
+				inp1.put("nama", requestSubscriber.getNama());
+				inp1.put("email", requestSubscriber.getEmail());
+				inp1.put("nohp", requestSubscriber.getNohp());
+				inp1.put("tipe", requestSubscriber.getTipe());
+
+				Integer sel1 = subscriberMapper.updateSubcriber(inp1);
+
+				if (sel1.equals(1) == false) {
+
+					logger.info("[Scheaduler - ] update to subcriber fail");
+					return 111;
+				}
+			}
+
+			logger.info("[Scheaduler - ] update to subcriber success.");
+			return 222;
+
+		} catch (Exception e) {
+
+			logger.info("[Scheaduler - ] update to subcriber fail");
+			e.printStackTrace();
+			return 111;
+
+		}
+	}
+
+	public Integer delete(RequestSubscriber requestSubscriber) {
+
+		try {
+
+			HashMap<String, Object> inp = new HashMap<String, Object>();
+			HashMap<String, Object> inp1 = new HashMap<String, Object>();
+
+			inp.put("id", requestSubscriber.getId());
+			inp.put("nama", requestSubscriber.getNama());
+
+			logger.info("[Scheaduler - ] delete to subcriber : " + inp);
+
+			Subscriber cTrans = subscriberMapper.findSubcriberByIdnName(inp);
+
+			if (cTrans != null) {
+
+				inp1.put("id", cTrans.getId());
+				inp1.put("nama", cTrans.getNama());
+
+				Integer sel1 = subscriberMapper.deleteSubcriberByTxId(inp1);
+
+				if (sel1.equals(1) == true) {
+
+					logger.info("[Scheaduler - ] delete to subcriber success");
+					return 222;
+				}
+			}
+
+			logger.info("[Scheaduler - ] delete to subcriber fail.");
+			return 111;
+
+		} catch (Exception e) {
+
+			logger.info("[Scheaduler - ] delete to subcriber fail");
 			e.printStackTrace();
 			return 111;
 
