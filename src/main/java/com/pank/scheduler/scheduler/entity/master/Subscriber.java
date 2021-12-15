@@ -1,4 +1,4 @@
-package com.scheduler.entity.master;
+package com.pank.scheduler.scheduler.entity.master;
 
 import java.io.Serializable;
 
@@ -8,7 +8,7 @@ public class Subscriber implements Serializable{
     private String nama;
     private String email;
     private String nohp;
-    private String type;
+    private String tipe;
     
 	public String getId() {
 		return id;
@@ -34,12 +34,11 @@ public class Subscriber implements Serializable{
 	public void setNohp(String nohp) {
 		this.nohp = nohp;
 	}
-	public String getType() {
-		return type;
+	public String getTipe() {
+		return tipe;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setTipe(String tipe) {
+		this.tipe = tipe;
 	}
-    
-    
+	
 }

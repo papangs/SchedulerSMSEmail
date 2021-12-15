@@ -1,3 +1,4 @@
+package com.pank.scheduler.scheduler.config;
 //package com.scheduler.config;
 //
 //import org.jasypt.encryption.StringEncryptor;

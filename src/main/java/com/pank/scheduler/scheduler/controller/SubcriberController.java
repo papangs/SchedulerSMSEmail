@@ -1,4 +1,4 @@
-package com.scheduler.controller;
+package com.pank.scheduler.scheduler.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,19 +8,18 @@ import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.scheduler.constant.*;
-import com.scheduler.entity.master.Subscriber;
-import com.scheduler.entity.subcriber.RequestSubscriber;
-import com.scheduler.entity.subcriber.ResponseJsonSubscriber;
-import com.scheduler.entity.subcriber.ResponseObjectSubscriber;
-import com.scheduler.entity.subcriber.ResponseSubscriber;
-import com.scheduler.service.SubscriberMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pank.scheduler.scheduler.constant.ConstantCode;
+import com.pank.scheduler.scheduler.entity.master.Subscriber;
+import com.pank.scheduler.scheduler.entity.subcriber.RequestSubscriber;
+import com.pank.scheduler.scheduler.entity.subcriber.ResponseJsonSubscriber;
+import com.pank.scheduler.scheduler.entity.subcriber.ResponseObjectSubscriber;
+import com.pank.scheduler.scheduler.entity.subcriber.ResponseSubscriber;
+import com.pank.scheduler.scheduler.service.SubscriberMapper;
 
 //@Component
 @RestController
@@ -72,17 +71,22 @@ public class SubcriberController {
 				responseObjectSubscriber.setRescode(ConstantCode.ErrCode03);
 				responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode03Desc);
 
-			} else if (requestSubscriber.getType().equals("") || requestSubscriber.getType().isEmpty()
-					|| requestSubscriber.getType().equals(null)) {
+			} else if (requestSubscriber.getTipe().equals("") || requestSubscriber.getTipe().isEmpty()
+					|| requestSubscriber.getTipe().equals(null)) {
 
 				logger.info("[Scheaduler - ] Error Type");
 				responseObjectSubscriber.setRescode(ConstantCode.ErrCode04);
 				responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode04Desc);
 
-			} else if (requestSubscriber.getType().equals(ConstantValidasi.ValSMS)
-					|| requestSubscriber.getType().equals(ConstantValidasi.ValEmail)) {
+			} else if (!requestSubscriber.getTipe().equals("SMS")) {
 
-				logger.info("[Scheaduler - ] Error Type to SMS and Email");
+				logger.info("[Scheaduler - ] Error Type to SMS");
+				responseObjectSubscriber.setRescode(ConstantCode.ErrCode05);
+				responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode05Desc);
+
+			} else if (!requestSubscriber.getTipe().equals("EMAIL")) {
+
+				logger.info("[Scheaduler - ] Error Type to Email");
 				responseObjectSubscriber.setRescode(ConstantCode.ErrCode05);
 				responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode05Desc);
 
@@ -92,9 +96,7 @@ public class SubcriberController {
 
 				if (iTrans.equals(222)) {
 
-					String id = tXid;
-					
-					Subscriber cTrans = subscriberMapper.findSubcriberById(id);
+					Subscriber cTrans = subscriberMapper.findSubcriberById(tXid);
 
 					if (cTrans == null) {
 
@@ -112,7 +114,7 @@ public class SubcriberController {
 						responseJsonSubscriber.setNama(cTrans.getNama());
 						responseJsonSubscriber.setEmail(cTrans.getEmail());
 						responseJsonSubscriber.setNohp(cTrans.getNohp());
-						responseJsonSubscriber.setType(cTrans.getType());
+						responseJsonSubscriber.setTipe(cTrans.getTipe());
 
 						responseSubscriber.setObject(responseObjectSubscriber);
 						responseSubscriber.setJsonData(responseJsonSubscriber);
@@ -175,7 +177,7 @@ public class SubcriberController {
 			responseJsonSubscriber.setNama(cTrans.getNama());
 			responseJsonSubscriber.setEmail(cTrans.getEmail());
 			responseJsonSubscriber.setNohp(cTrans.getNohp());
-			responseJsonSubscriber.setType(cTrans.getType());
+			responseJsonSubscriber.setTipe(cTrans.getTipe());
 
 			responseSubscriber.setObject(responseObjectSubscriber);
 			responseSubscriber.setJsonData(responseJsonSubscriber);
@@ -230,7 +232,7 @@ public class SubcriberController {
 			inp.put("nama", requestSubscriber.getNama());
 			inp.put("email", requestSubscriber.getEmail());
 			inp.put("nohp", requestSubscriber.getNohp());
-			inp.put("type", requestSubscriber.getType());
+			inp.put("tipe", requestSubscriber.getTipe());
 
 			logger.info("[Scheaduler - ] insert to subcriber : " + inp);
 
@@ -242,7 +244,7 @@ public class SubcriberController {
 				inp1.put("nama", requestSubscriber.getNama());
 				inp1.put("email", requestSubscriber.getEmail());
 				inp1.put("nohp", requestSubscriber.getNohp());
-				inp1.put("type", requestSubscriber.getType());
+				inp1.put("tipe", requestSubscriber.getTipe());
 
 				Integer sel1 = subscriberMapper.insertSubcriber(inp1);
 				tXid = inp1.get("id").toString();

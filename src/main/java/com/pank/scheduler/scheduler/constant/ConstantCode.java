@@ -1,4 +1,4 @@
-package com.scheduler.constant;
+package com.pank.scheduler.scheduler.constant;
 
 public class ConstantCode {
 

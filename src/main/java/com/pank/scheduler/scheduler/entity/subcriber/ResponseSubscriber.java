@@ -1,4 +1,4 @@
-package com.scheduler.entity.subcriber;
+package com.pank.scheduler.scheduler.entity.subcriber;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

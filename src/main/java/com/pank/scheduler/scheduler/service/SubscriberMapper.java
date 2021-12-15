@@ -1,8 +1,8 @@
-package com.scheduler.service;
+package com.pank.scheduler.scheduler.service;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.scheduler.entity.master.Subscriber;
+import com.pank.scheduler.scheduler.entity.master.Subscriber;
 
 import java.util.HashMap;
 

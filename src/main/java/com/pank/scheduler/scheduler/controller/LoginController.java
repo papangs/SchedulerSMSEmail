@@ -1,20 +1,21 @@
-package com.scheduler.controller;
+package com.pank.scheduler.scheduler.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/setting")
-public class SettingController {
+@RequestMapping("/login")
+public class LoginController {
 
-	Logger logger = LoggerFactory.getLogger(SettingController.class);
+	Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public String addData(@RequestBody String body) {
 
-		logger.info("[Scheaduler - ] Start Setting");
+		logger.info("[Scheaduler - ] Start Login");
 		
 		return body;
 	}
+	
 }

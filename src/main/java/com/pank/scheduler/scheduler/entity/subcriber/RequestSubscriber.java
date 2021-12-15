@@ -1,31 +1,30 @@
-package com.scheduler.entity.subcriber;
+package com.pank.scheduler.scheduler.entity.subcriber;
+
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ResponseJsonSubscriber {
+public class RequestSubscriber {
 
 	@JsonProperty("id")
+	@NotNull
 	private String id;
 
 	@JsonProperty("nama")
+	@NotNull
 	private String nama;
 
 	@JsonProperty("email")
+	@NotNull
 	private String email;
 
 	@JsonProperty("nohp")
+	@NotNull
 	private String nohp;
 
-	@JsonProperty("type")
-	private String type;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	@JsonProperty("tipe")
+	@NotNull
+	private String tipe;
 
 	public String getNama() {
 		return nama;
@@ -51,14 +50,21 @@ public class ResponseJsonSubscriber {
 		this.nohp = nohp;
 	}
 
-	public String getType() {
-		return type;
+	public String getTipe() {
+		return tipe;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setTipe(String tipe) {
+		this.tipe = tipe;
 	}
-	
-	
-	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+    
+    
 }

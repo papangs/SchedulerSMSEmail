@@ -9,7 +9,7 @@
 		<version>2.1.12.BUILD-SNAPSHOT</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.scheduler</groupId>
+	<groupId>com.pank.scheduler</groupId>
 	<artifactId>SchedulerSMSEMAIL</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SchedulerSMSEMAIL</name>
