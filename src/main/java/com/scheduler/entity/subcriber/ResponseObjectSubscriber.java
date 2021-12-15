@@ -1,13 +1,17 @@
-package com.entity.subcriber;
+package com.scheduler.entity.subcriber;
+
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ResponseObjectSubscriber {
 
 	@JsonProperty("rescode")
+	@NotNull
 	private String rescode;
 
 	@JsonProperty("rescodedesc")
+	@NotNull
 	private String rescodedesc;
 
 	public String getRescode() {

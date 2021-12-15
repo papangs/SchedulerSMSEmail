@@ -1,14 +1,13 @@
-package com.entity.subcriber;
+package com.scheduler.entity.subcriber;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ResponseSubscriber {
 
-	@JsonProperty("Object")
 	private ResponseObjectSubscriber object;
 
-	@JsonProperty("Json")
-	private ResponseJsonSubscriber Json;
+	@JsonProperty("JsonData")
+	private ResponseJsonSubscriber JsonData;
 
 	public ResponseObjectSubscriber getObject() {
 		return object;
@@ -18,14 +17,13 @@ public class ResponseSubscriber {
 		this.object = object;
 	}
 
-	public ResponseJsonSubscriber getJson() {
-		return Json;
+	public ResponseJsonSubscriber getJsonData() {
+		return JsonData;
 	}
 
-	public void setJson(ResponseJsonSubscriber json) {
-		Json = json;
+	public void setJsonData(ResponseJsonSubscriber jsonData) {
+		JsonData = jsonData;
 	}
 
-	
 	
 }

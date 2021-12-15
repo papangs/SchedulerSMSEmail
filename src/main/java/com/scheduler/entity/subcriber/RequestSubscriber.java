@@ -1,19 +1,29 @@
-package com.entity.subcriber;
+package com.scheduler.entity.subcriber;
+
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RequestSubscriber {
 
+	@JsonProperty("id")
+	@NotNull
+	private String id;
+
 	@JsonProperty("nama")
+	@NotNull
 	private String nama;
 
 	@JsonProperty("email")
+	@NotNull
 	private String email;
 
 	@JsonProperty("nohp")
+	@NotNull
 	private String nohp;
 
 	@JsonProperty("type")
+	@NotNull
 	private String type;
 
 	public String getNama() {
@@ -46,6 +56,14 @@ public class RequestSubscriber {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
     
     

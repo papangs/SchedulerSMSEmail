@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.service.SubscriberMapper" >
+<mapper namespace="com.scheduler.service.SubscriberMapper" >
     <cache />
-    <resultMap id="resParam" type="com.entity.master.Subscriber" >
+    <resultMap id="resParam" type="com.scheduler.entity.master.Subscriber" >
         <result column="id" property="id" />
         <result column="nama" property="nama" />
         <result column="email" property="email" />
         <result column="nohp" property="nohp" />
         <result column="type" property="type" />
     </resultMap>
+    
+    <select id="findSubcriberById" resultType="Subscriber">
+        SELECT 
+		    id,
+		    nama,
+		    email,
+		    nohp,
+		    type
+		FROM
+		    subscriber
+		WHERE
+		    id = #{id}
+    </select>
     
     <select id="findSubcriber" resultType="Subscriber">
         SELECT 

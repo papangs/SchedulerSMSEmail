@@ -1,4 +1,4 @@
-package com.constant;
+package com.scheduler.constant;
 
 public class ConstantCode {
 

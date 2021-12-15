@@ -1,6 +1,8 @@
-package com.entity.master;
+package com.scheduler.entity.master;
 
-public class Subscriber {
+import java.io.Serializable;
+
+public class Subscriber implements Serializable{
 
     private String id;
     private String nama;

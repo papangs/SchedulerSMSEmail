@@ -1,6 +1,6 @@
-package com.constant;
+package com.scheduler.constant;
 
-public class ConstantValidation {
+public class ConstantValidasi {
 
 	public static final String ValSMS = "SMS";
 	public static final String ValEmail = "Email";
