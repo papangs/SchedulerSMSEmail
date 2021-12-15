@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RequestSubscriber {
 
+	@JsonProperty("id")
+	private String id;
+	
 	@JsonProperty("nama")
 	private String nama;
 
@@ -46,6 +49,14 @@ public class RequestSubscriber {
 
 	public void setTipe(String tipe) {
 		this.tipe = tipe;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
     

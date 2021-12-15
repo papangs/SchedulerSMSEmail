@@ -20,9 +20,12 @@ public class ConstantCode {
 	public static final String ErrCode04 = "04";
 	public static final String ErrCode04Desc = "Type tidak boleh kosong";
 	public static final String ErrCode05 = "05";
-	public static final String ErrCode05Desc = "Hanya bisa di isi dengan SMS dan Email";
+	public static final String ErrCode05Desc = "Tipe Hanya bisa di isi dengan SMS dan Email";
 
 	public static final String ErrCode63 = "63";
 	public static final String ErrCode63Desc = "Error when input to db";
+
+	public static final String ErrCode56 = "56";
+	public static final String ErrCode56Desc = "ID Not Exist";
 		
 }
