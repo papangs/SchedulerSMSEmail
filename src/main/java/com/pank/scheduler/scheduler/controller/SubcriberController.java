@@ -8,6 +8,8 @@ import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +25,7 @@ import com.pank.scheduler.scheduler.entity.subcriber.ResponseObjectSubscriberDel
 import com.pank.scheduler.scheduler.entity.subcriber.ResponseSubscriber;
 import com.pank.scheduler.scheduler.service.SubscriberMapper;
 
+@Component
 @RestController
 @RequestMapping("/subcriber")
 public class SubcriberController {
@@ -123,11 +126,19 @@ public class SubcriberController {
 
 	}
 
+//	@Scheduled(fixedRate = 5000)
+//	public void reportCurrentTime() {
+//		logger.info("The time is now {}", new SimpleDateFormat("HH:mm:ss").format(new Date()));
+//		
+//	}
+	
+	@Scheduled(fixedRate = 5000)
 	@RequestMapping(value = "/addData", method = RequestMethod.POST)
 	public ResponseSubscriber addData(@RequestBody String body) {
 
 		logger.info("[Scheaduler - ] Start Add Data");
-
+		logger.info("The time is now {}", new SimpleDateFormat("HH:mm:ss").format(new Date()));
+		
 		RequestSubscriber requestSubscriber = new RequestSubscriber();
 
 		ResponseSubscriber responseSubscriber = new ResponseSubscriber();
