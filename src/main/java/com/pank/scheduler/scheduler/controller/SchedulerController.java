@@ -5,12 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/scheduler")
+@RequestMapping("/")
 public class SchedulerController {
 
 	Logger logger = LoggerFactory.getLogger(SchedulerController.class);
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "scheduler", method = RequestMethod.POST)
 	public String addData(@RequestBody String body) {
 
 		logger.info("[Scheaduler - ] Start Scheduler");
