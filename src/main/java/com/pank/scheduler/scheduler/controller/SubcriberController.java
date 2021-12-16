@@ -126,13 +126,14 @@ public class SubcriberController {
 
 	}
 
-//	@Scheduled(fixedRate = 5000)
-//	public void reportCurrentTime() {
-//		logger.info("The time is now {}", new SimpleDateFormat("HH:mm:ss").format(new Date()));
-//		
-//	}
-	
-	@Scheduled(fixedRate = 5000)
+	@Scheduled(cron = "* * * 12 * ?")
+	public void cronJobSch() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		Date now = new Date();
+		String strDate = sdf.format(now);
+		System.out.println("Java cron job expression:: " + strDate);
+	}
+
 	@RequestMapping(value = "/addData", method = RequestMethod.POST)
 	public ResponseSubscriber addData(@RequestBody String body) {
 
