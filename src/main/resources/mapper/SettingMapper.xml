@@ -22,39 +22,23 @@
 		    id = #{id}
     </select>
     
-    <insert id="insertSubcriber" parameterType="hashmap">
-        INSERT INTO subscriber (
-		    id,
-		    nama,
-		    email,
-		    nohp,
-		    tipe
-		)
-		VALUES 
-		(
-			#{id},
-		    #{nama},
-		    #{email},
-		    #{nohp},
-		    #{tipe}
-		)
-    </insert>
+    <select id="getParam" resultType="String">
+        SELECT param FROM parameter 
+        WHERE 
+        	group_param=#{group_param} 
+        AND
+        	kode_param=#{kode_param}
+    </select>
     
-    <update id="updateSubcriber" parameterType="hashmap">
-        UPDATE subscriber 
+    <update id="updateParameter" parameterType="hashmap">
+        UPDATE parameter 
 		    <set>
-		      <if test="id != null">id=#{id}</if>,
-		      <if test="nama != null">nama=#{nama}</if>,
-		      <if test="email != null">email=#{email}</if>,
-		      <if test="nohp != null">nohp=#{nohp}</if>,
-		      <if test="tipe != null">tipe=#{tipe}</if>
+		      <if test="group_param != null">group_param=#{group_param}</if>,
+		      <if test="kode_param != null">kode_param=#{kode_param}</if>,
+		      <if test="param != null">param=#{param}</if>
 		    </set>
 		WHERE 
 			id = #{id}
     </update>
     
-    <delete id="deleteSubcriberByTxId" parameterType="String">
-      DELETE FROM subscriber WHERE id = #{id} AND nama = #{nama}
-   	</delete>
-   
 </mapper>

@@ -11,6 +11,17 @@
         <result column="tipe" property="tipe" />
     </resultMap>
     
+    <select id="findSubcribers" resultType="Subscriber">
+        SELECT 
+		    id,
+		    nama,
+		    email,
+		    nohp,
+		    tipe
+		FROM
+		    subscriber
+    </select>
+    
     <select id="findSubcriberByIdnName" resultType="Subscriber">
         SELECT 
 		    id,

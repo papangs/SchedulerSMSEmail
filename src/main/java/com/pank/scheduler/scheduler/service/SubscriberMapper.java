@@ -5,9 +5,12 @@ import org.apache.ibatis.annotations.Mapper;
 import com.pank.scheduler.scheduler.entity.master.Subscriber;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Mapper
 public interface SubscriberMapper {
+
+	public List<Subscriber> findSubcribers() throws Exception;
 	
     public Subscriber findSubcriberByIdnName(HashMap<String, Object> params) throws Exception;
 
