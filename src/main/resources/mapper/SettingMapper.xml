@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pank.scheduler.scheduler.service.SettingMapper" >
+    <cache />
+    <resultMap id="resParam" type="com.pank.scheduler.scheduler.entity.master.Setting" >
+        <result column="id" property="id" />
+        <result column="group_param" property="group_param" />
+        <result column="kode_param" property="kode_param" />
+        <result column="param" property="param" />
+    </resultMap>
+    
+    <select id="findParameterById" resultType="Setting">
+        SELECT 
+		    id,
+		    group_param,
+		    kode_param,
+		    param
+		FROM
+		    parameter
+		WHERE
+		    id = #{id}
+    </select>
+    
+    <insert id="insertSubcriber" parameterType="hashmap">
+        INSERT INTO subscriber (
+		    id,
+		    nama,
+		    email,
+		    nohp,
+		    tipe
+		)
+		VALUES 
+		(
+			#{id},
+		    #{nama},
+		    #{email},
+		    #{nohp},
+		    #{tipe}
+		)
+    </insert>
+    
+    <update id="updateSubcriber" parameterType="hashmap">
+        UPDATE subscriber 
+		    <set>
+		      <if test="id != null">id=#{id}</if>,
+		      <if test="nama != null">nama=#{nama}</if>,
+		      <if test="email != null">email=#{email}</if>,
+		      <if test="nohp != null">nohp=#{nohp}</if>,
+		      <if test="tipe != null">tipe=#{tipe}</if>
+		    </set>
+		WHERE 
+			id = #{id}
+    </update>
+    
+    <delete id="deleteSubcriberByTxId" parameterType="String">
+      DELETE FROM subscriber WHERE id = #{id} AND nama = #{nama}
+   	</delete>
+   
+</mapper>

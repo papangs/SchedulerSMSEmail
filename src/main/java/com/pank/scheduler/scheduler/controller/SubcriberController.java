@@ -47,7 +47,7 @@ public class SubcriberController {
 			if (requestSubscriber.getNama().equals("") || requestSubscriber.getNama().isEmpty()
 					|| requestSubscriber.getNama().equals(null)) {
 
-				logger.info("[Scheaduler - ] Error Nama");
+				logger.info("[Subcriber - Validate-Delete] Error Nama");
 				responseCode = ConstantCode.ErrCode01;
 				responseDesc = ConstantCode.ErrCode01Desc;
 				return false;
@@ -55,7 +55,7 @@ public class SubcriberController {
 			} else if (requestSubscriber.getId().equals("") || requestSubscriber.getId().isEmpty()
 					|| requestSubscriber.getId().equals(null)) {
 
-				logger.info("[Scheaduler - ] Error ID Wrong");
+				logger.info("[Scheaduler - Validate-Delete] Error ID Wrong");
 				responseCode = ConstantCode.ErrCode56;
 				responseDesc = ConstantCode.ErrCode56Desc;
 				return false;
@@ -78,7 +78,7 @@ public class SubcriberController {
 			if (requestSubscriber.getNama().equals("") || requestSubscriber.getNama().isEmpty()
 					|| requestSubscriber.getNama().equals(null)) {
 
-				logger.info("[Scheaduler - ] Error Nama");
+				logger.info("[Subcriber - Validate] Error Nama");
 				responseCode = ConstantCode.ErrCode01;
 				responseDesc = ConstantCode.ErrCode01Desc;
 				return false;
@@ -86,7 +86,7 @@ public class SubcriberController {
 			} else if (requestSubscriber.getEmail().equals("") || requestSubscriber.getEmail().isEmpty()
 					|| requestSubscriber.getEmail().equals(null)) {
 
-				logger.info("[Scheaduler - ] Error Email");
+				logger.info("[Subcriber - Validate] Error Email");
 				responseCode = ConstantCode.ErrCode02;
 				responseDesc = ConstantCode.ErrCode02Desc;
 				return false;
@@ -94,7 +94,7 @@ public class SubcriberController {
 			} else if (requestSubscriber.getNohp().equals("") || requestSubscriber.getNohp().isEmpty()
 					|| requestSubscriber.getNohp().equals(null)) {
 
-				logger.info("[Scheaduler - ] Error No Hp");
+				logger.info("[Subcriber - Validate] Error No Hp");
 				responseCode = ConstantCode.ErrCode03;
 				responseDesc = ConstantCode.ErrCode03Desc;
 				return false;
@@ -102,7 +102,7 @@ public class SubcriberController {
 			} else if (requestSubscriber.getTipe().equals("") || requestSubscriber.getTipe().isEmpty()
 					|| requestSubscriber.getTipe().equals(null)) {
 
-				logger.info("[Scheaduler - ] Error Type");
+				logger.info("[Subcriber - Validate] Error Type");
 				responseCode = ConstantCode.ErrCode04;
 				responseDesc = ConstantCode.ErrCode04Desc;
 				return false;
@@ -110,7 +110,7 @@ public class SubcriberController {
 			} else if ((requestSubscriber.getTipe().equals(ConstantValidasi.ValSMS)) == false
 					&& (requestSubscriber.getTipe().equals(ConstantValidasi.ValEMAIL)) == false) {
 
-				logger.info("[Scheaduler - ] Error Type to SMS and EMAIL");
+				logger.info("[Subcriber - Validate] Error Type to SMS and EMAIL");
 				responseCode = ConstantCode.ErrCode05;
 				responseDesc = ConstantCode.ErrCode05Desc;
 				return false;
@@ -126,18 +126,10 @@ public class SubcriberController {
 
 	}
 
-	@Scheduled(cron = "${cron.expression}")
-	public void cronJobSch() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		Date now = new Date();
-		String strDate = sdf.format(now);
-		System.out.println("Java cron job expression:: " + strDate);
-	}
-
 	@RequestMapping(value = "/addData", method = RequestMethod.POST)
 	public ResponseSubscriber addData(@RequestBody String body) {
 
-		logger.info("[Scheaduler - ] Start Add Data");
+		logger.info("[Subcriber - Add Data] Start Add Data");
 		logger.info("The time is now {}", new SimpleDateFormat("HH:mm:ss").format(new Date()));
 		
 		RequestSubscriber requestSubscriber = new RequestSubscriber();
@@ -164,13 +156,13 @@ public class SubcriberController {
 
 					if (cTrans == null) {
 
-						logger.info("[Scheaduler - ] Error Data is null");
+						logger.info("[Subcriber - Add Data] Error Data is null");
 						responseObjectSubscriber.setRescode(ConstantCode.ErrCode99);
 						responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode99Desc);
 
 					} else {
 
-						logger.info("[Scheaduler - ] Success");
+						logger.info("[Subcriber - Add Data] Success");
 						responseObjectSubscriber.setRescode(ConstantCode.ErrCode00);
 						responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode00Desc);
 
@@ -188,7 +180,7 @@ public class SubcriberController {
 
 				} else {
 
-					logger.info("[Scheaduler - ] Error when input table subcriber.");
+					logger.info("[Subcriber - Add Data] Error when input table subcriber.");
 					responseObjectSubscriber.setRescode(ConstantCode.ErrCode63);
 					responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode63Desc);
 
@@ -209,7 +201,7 @@ public class SubcriberController {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			logger.info("[Scheaduler - ] Other Error");
+			logger.info("[Subcriber - Add Data] Other Error");
 			responseObjectSubscriber.setRescode(ConstantCode.ErrCode99);
 			responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode99Desc);
 			responseSubscriber.setObjectSubscriber(responseObjectSubscriber);
@@ -223,7 +215,7 @@ public class SubcriberController {
 	@RequestMapping(value = "/getData")
 	public ResponseSubscriber getData(@RequestBody String body) {
 
-		logger.info("[Scheaduler - ] Start Get Data");
+		logger.info("[Subcriber - Get Data] Start Get Data");
 
 		RequestSubscriber requestSubscriber = new RequestSubscriber();
 
@@ -240,7 +232,7 @@ public class SubcriberController {
 
 			if (cTrans != null) {
 
-				logger.info("[Scheaduler - ] Success");
+				logger.info("[Subcriber - Get Data] Success");
 				responseObjectSubscriber.setRescode(ConstantCode.ErrCode00);
 				responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode00Desc);
 
@@ -270,7 +262,7 @@ public class SubcriberController {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			logger.info("[Scheaduler - ] Other Error");
+			logger.info("[Subcriber - Get Data] Other Error");
 			responseObjectSubscriber.setRescode(ConstantCode.ErrCode99);
 			responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode99Desc);
 			responseSubscriber.setObjectSubscriber(responseObjectSubscriber);
@@ -284,7 +276,7 @@ public class SubcriberController {
 	@RequestMapping(value = "/deleteData", method = RequestMethod.POST)
 	public ResponseObjectSubscriberDelete deleteData(@RequestBody String body) {
 
-		logger.info("[Scheaduler - ] Start Delete Data");
+		logger.info("[Subcriber - Delete Data] Start Delete Data");
 
 		RequestSubscriber requestSubscriber = new RequestSubscriber();
 
@@ -304,7 +296,7 @@ public class SubcriberController {
 
 				if (iTrans.equals(222)) {
 
-					logger.info("[Scheaduler - ] Success");
+					logger.info("[Subcriber - Delete Data] Success");
 					responseObjectSubscriber.setRescode(ConstantCode.ErrCode00);
 					responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode00Desc);
 
@@ -312,7 +304,7 @@ public class SubcriberController {
 
 				} else {
 
-					logger.info("[Scheaduler - ] Error when update table subcriber.");
+					logger.info("[Subcriber - Delete Data] Error when update table subcriber.");
 					responseObjectSubscriber.setRescode(ConstantCode.ErrCode63);
 					responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode63Desc);
 
@@ -330,7 +322,7 @@ public class SubcriberController {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			logger.info("[Scheaduler - ] Other Error");
+			logger.info("[Subcriber - Delete Data] Other Error");
 			responseObjectSubscriber.setRescode(ConstantCode.ErrCode99);
 			responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode99Desc);
 
@@ -341,7 +333,7 @@ public class SubcriberController {
 	@RequestMapping(value = "/updateData", method = RequestMethod.POST)
 	public ResponseSubscriber updateData(@RequestBody String body) {
 
-		logger.info("[Scheaduler - ] Start Update Data");
+		logger.info("[Subcriber - Update Data] Start Update Data");
 
 		RequestSubscriber requestSubscriber = new RequestSubscriber();
 
@@ -367,13 +359,13 @@ public class SubcriberController {
 
 					if (cTrans == null) {
 
-						logger.info("[Scheaduler - ] Error Data is null");
+						logger.info("[Subcriber - Update Data] Error Data is null");
 						responseObjectSubscriber.setRescode(ConstantCode.ErrCode99);
 						responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode99Desc);
 
 					} else {
 
-						logger.info("[Scheaduler - ] Success");
+						logger.info("[Subcriber - Update Data] Success");
 						responseObjectSubscriber.setRescode(ConstantCode.ErrCode00);
 						responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode00Desc);
 
@@ -391,7 +383,7 @@ public class SubcriberController {
 
 				} else {
 
-					logger.info("[Scheaduler - ] Error when update table subcriber.");
+					logger.info("[Subcriber - Update Data] Error when update table subcriber.");
 					responseObjectSubscriber.setRescode(ConstantCode.ErrCode63);
 					responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode63Desc);
 
@@ -412,7 +404,7 @@ public class SubcriberController {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			logger.info("[Scheaduler - ] Other Error");
+			logger.info("[Subcriber - Update Data] Other Error");
 			responseObjectSubscriber.setRescode(ConstantCode.ErrCode99);
 			responseObjectSubscriber.setRescodedesc(ConstantCode.ErrCode99Desc);
 			responseSubscriber.setObjectSubscriber(responseObjectSubscriber);
@@ -446,7 +438,7 @@ public class SubcriberController {
 			inp.put("nohp", requestSubscriber.getNohp());
 			inp.put("tipe", requestSubscriber.getTipe());
 
-			logger.info("[Scheaduler - ] insert to subcriber : " + inp);
+			logger.info("[Subcriber - Insert] insert to subcriber : " + inp);
 
 			Subscriber cTrans = subscriberMapper.findSubcriber(inp);
 
@@ -463,17 +455,17 @@ public class SubcriberController {
 
 				if (sel1.equals(1) == false) {
 
-					logger.info("[Scheaduler - ] insert to subcriber fail");
+					logger.info("[Subcriber - Insert] insert to subcriber fail");
 					return 111;
 				}
 			}
 
-			logger.info("[Scheaduler - ] insert to subcriber success.");
+			logger.info("[Subcriber - Insert] insert to subcriber success.");
 			return 222;
 
 		} catch (Exception e) {
 
-			logger.info("[Scheaduler - ] insert to subcriber fail");
+			logger.info("[Subcriber - Insert] insert to subcriber fail");
 			e.printStackTrace();
 			return 111;
 
@@ -493,7 +485,7 @@ public class SubcriberController {
 			inp.put("nohp", requestSubscriber.getNohp());
 			inp.put("tipe", requestSubscriber.getTipe());
 
-			logger.info("[Scheaduler - ] update to subcriber : " + inp);
+			logger.info("[Subcriber - Update] update to subcriber : " + inp);
 
 			Subscriber cTrans = subscriberMapper.findSubcriber(inp);
 
@@ -509,17 +501,17 @@ public class SubcriberController {
 
 				if (sel1.equals(1) == false) {
 
-					logger.info("[Scheaduler - ] update to subcriber fail");
+					logger.info("[Subcriber - Update] update to subcriber fail");
 					return 111;
 				}
 			}
 
-			logger.info("[Scheaduler - ] update to subcriber success.");
+			logger.info("[Subcriber - Update] update to subcriber success.");
 			return 222;
 
 		} catch (Exception e) {
 
-			logger.info("[Scheaduler - ] update to subcriber fail");
+			logger.info("[Subcriber - Update] update to subcriber fail");
 			e.printStackTrace();
 			return 111;
 
@@ -536,7 +528,7 @@ public class SubcriberController {
 			inp.put("id", requestSubscriber.getId());
 			inp.put("nama", requestSubscriber.getNama());
 
-			logger.info("[Scheaduler - ] delete to subcriber : " + inp);
+			logger.info("[Subcriber - Delete] delete to subcriber : " + inp);
 
 			Subscriber cTrans = subscriberMapper.findSubcriberByIdnName(inp);
 
@@ -549,17 +541,17 @@ public class SubcriberController {
 
 				if (sel1.equals(1) == true) {
 
-					logger.info("[Scheaduler - ] delete to subcriber success");
+					logger.info("[Subcriber - Delete] delete to subcriber success");
 					return 222;
 				}
 			}
 
-			logger.info("[Scheaduler - ] delete to subcriber fail.");
+			logger.info("[Subcriber - Delete] delete to subcriber fail.");
 			return 111;
 
 		} catch (Exception e) {
 
-			logger.info("[Scheaduler - ] delete to subcriber fail");
+			logger.info("[Subcriber - Delete] delete to subcriber fail");
 			e.printStackTrace();
 			return 111;
 

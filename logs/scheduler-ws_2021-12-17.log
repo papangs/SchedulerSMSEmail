@@ -1,0 +1,13 @@
+2021-12-17 11:31:22.468[                 ]INFO [otMybatisApplication:55]Starting SpringBootMybatisApplication on DESKTOP-RKJ18PE with PID 1768 (E:\SWITCHING_PAPANG\Java\Scheduler\SchedulerSMSEmail\target\classes started by Mr Papang in E:\SWITCHING_PAPANG\Java\Scheduler\SchedulerSMSEmail)
+2021-12-17 11:31:22.480[                 ]INFO [otMybatisApplication:651]No active profile set, falling back to default profiles: default
+2021-12-17 11:31:25.858[                 ]INFO [otMybatisApplication:61]Started SpringBootMybatisApplication in 3.981 seconds (JVM running for 5.291)
+2021-12-17 11:32:26.125[                 ]INFO [.SubcriberController:140][Scheaduler - ] Start Add Data
+2021-12-17 11:32:26.126[                 ]INFO [.SubcriberController:141]The time is now 11:32:26
+2021-12-17 11:32:26.240[                 ]INFO [.SubcriberController:449][Scheaduler - ] insert to subcriber : {nama=Anja An, nohp=0838323241213, id=SUB20211217113226878871, tipe=EMAIL, email=Anja@gmail.com}
+2021-12-17 11:32:26.788[                 ]INFO [.SubcriberController:471][Scheaduler - ] insert to subcriber success.
+2021-12-17 11:32:26.795[                 ]INFO [.SubcriberController:173][Scheaduler - ] Success
+2021-12-17 11:32:35.780[                 ]INFO [.SubcriberController:226][Scheaduler - ] Start Get Data
+2021-12-17 11:32:35.786[                 ]INFO [.SubcriberController:243][Scheaduler - ] Success
+2021-12-17 13:35:19.819[                 ]INFO [otMybatisApplication:55]Starting SpringBootMybatisApplication on DESKTOP-RKJ18PE with PID 15512 (E:\SWITCHING_PAPANG\Java\Scheduler\SchedulerSMSEmail\target\classes started by Mr Papang in E:\SWITCHING_PAPANG\Java\Scheduler\SchedulerSMSEmail)
+2021-12-17 13:35:19.826[                 ]INFO [otMybatisApplication:651]No active profile set, falling back to default profiles: default
+2021-12-17 13:35:22.618[                 ]INFO [otMybatisApplication:61]Started SpringBootMybatisApplication in 3.354 seconds (JVM running for 4.509)
