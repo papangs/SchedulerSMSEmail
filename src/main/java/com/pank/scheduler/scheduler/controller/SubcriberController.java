@@ -126,7 +126,7 @@ public class SubcriberController {
 
 	}
 
-	@Scheduled(cron = "* * * 12 * ?")
+	@Scheduled(cron = "${cron.expression}")
 	public void cronJobSch() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 		Date now = new Date();
