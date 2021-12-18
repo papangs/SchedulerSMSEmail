@@ -33,12 +33,12 @@
     <update id="updateParameter" parameterType="hashmap">
         UPDATE parameter 
 		    <set>
-		      <if test="group_param != null">group_param=#{group_param}</if>,
-		      <if test="kode_param != null">kode_param=#{kode_param}</if>,
 		      <if test="param != null">param=#{param}</if>
 		    </set>
 		WHERE 
-			id = #{id}
+			group_param = #{group_param}
+		AND 
+			kode_param = #{kode_param}
     </update>
     
 </mapper>

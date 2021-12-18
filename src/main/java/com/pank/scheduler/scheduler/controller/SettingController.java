@@ -20,15 +20,15 @@ public class SettingController {
 	@Autowired
 	private SettingMapper settingMapper;
 	
-	@RequestMapping(value = "/sms-twilio", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateSMS", method = RequestMethod.POST)
 	public String settingTwilio(@RequestBody String body) {
 
-		logger.info("[Setting - Twilio] Start Setting SMS Twilio");
+		logger.info("[Setting - SMS Twilio] Start Setting SMS Twilio");
 		
 		return body;
 	}
 	
-	@RequestMapping(value = "/email-gmail", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateEmail", method = RequestMethod.POST)
 	public ResponseSetting settingEmail(@RequestBody String body) {
 
 		logger.info("[Setting - Email] Start Setting Email Gmail");
@@ -52,10 +52,18 @@ public class SettingController {
 		}
 	}
 	
-	@RequestMapping(value = "/scheduled-cron", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateScheduled", method = RequestMethod.POST)
 	public String settingScheduledCron(@RequestBody String body) {
 
-		logger.info("[Setting - Scheduled Cron ] Start Setting Scheduled Cron");
+		logger.info("[Setting - Scheduled] Start Setting Scheduled");
+		
+		return body;
+	}
+	
+	@RequestMapping(value = "/updateThread", method = RequestMethod.POST)
+	public String settingThread(@RequestBody String body) {
+
+		logger.info("[Setting - Thread] Start Setting Thread");
 		
 		return body;
 	}
