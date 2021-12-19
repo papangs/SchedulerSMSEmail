@@ -1,10 +1,10 @@
-package com.pank.scheduler.scheduler.entity.setting;
+package com.pank.scheduler.scheduler.entity.params;
 
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ResponseObjectSetting {
+public class ResponseObjectParam {
 
 	@JsonProperty("rescode")
 	@NotNull

@@ -200,6 +200,8 @@ public class SchedulerController {
 								
 							}
 							
+							
+							
 						}
 
 					} else {
@@ -220,16 +222,14 @@ public class SchedulerController {
 		}
 	}
 	
-	@RequestMapping(value = "scheduler", method = RequestMethod.POST)
-	public String addData(@RequestBody String body) {
+//	@RequestMapping(value = "scheduler", method = RequestMethod.POST)
+//	public String addData(@RequestBody String body) {
+//
+//		logger.info("[Scheaduler - ] Start Scheduler");
+//
+//		return body;
+//	}
 
-		logger.info("[Scheaduler - ] Start Scheduler");
-
-		return body;
-	}
-
-	
-	
 	// ========================================== FUNCTION ========================================================
 
 	private void methodEmail(Session session, String toEmail, String subject, String body) {

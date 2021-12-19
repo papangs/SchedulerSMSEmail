@@ -19,6 +19,9 @@ import javax.mail.internet.MimeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mysql.jdbc.Security;
+import com.sun.mail.smtp.SMTPTransport;
+
 public class tes {
 
 	static final String DB_URL = "jdbc:mysql://localhost:3306/scheduler";
@@ -26,7 +29,7 @@ public class tes {
 	static final String PASS = "";
 
 	public static void main(String[] args) {
-
+		
 		Logger logger = LoggerFactory.getLogger(tes.class);
 		
 		try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);) {
@@ -51,35 +54,36 @@ public class tes {
 			logger.info("[Scheaduler - ] Email Start");
 
 			Properties props = new Properties();
-//			props.put("mail.smtp.host", "smtp.gmail.com"); // SMTP Host
-////			props.put("mail.smtp.socketFactory.port", "465"); // SSL Port
-////			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); // SSL Factory Class
-//			props.put("mail.smtp.auth", "true"); // Enabling SMTP Authentication
-//			props.put("mail.smtp.port", "465"); // SMTP Port
-//			props.put("mail.smtp.starttls.enable", "true");
-//			props.put("mail.smtp.user", "irawanpapangsubakti28@gmail.com");
-
-			props.put("mail.smtp.host", "smtp.gmail.com"); // SMTP Host
-			props.put("mail.smtp.port", "465"); // SMTP Port
-	        props.put("mail.smtp.auth", "true");
-	        props.put("mail.smtp.starttls.enable", "true");
-			props.put("mail.smtp.user", "irawanpapangsubakti28@gmail.com");
-	        
-			Session session = Session.getDefaultInstance(props);
-
-			Message msg = new MimeMessage(session);
-
-			msg.setFrom(new InternetAddress("irawanpapangsubakti28@gmail.com"));
-			InternetAddress[] toAddresses = { new InternetAddress("irawanpapangsubakti@gmail.com") };
-			msg.setRecipients(Message.RecipientType.TO, toAddresses);
-			msg.setSubject("PANK");
-			msg.setSentDate(new Date());
-			msg.setText("sddsfdsfdsfdsff");
-
-			Transport t = session.getTransport("smtp");
-			t.connect("irawanpapangsubakti28@gmail.com", "28papang");
-			t.sendMessage(msg, msg.getAllRecipients());
-			t.close();
+		    props.setProperty("mail.smtps.host", "smtp.gmail.com");
+		    props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		    props.setProperty("mail.smtp.socketFactory.fallback", "false");
+		    props.setProperty("mail.smtp.port", "465");
+		    props.setProperty("mail.smtp.socketFactory.port", "465");
+		    props.setProperty("mail.smtps.auth", "true");
+		    props.put("mail.smtps.quitwait", "false");
+			 
+		    Session session = Session.getInstance(props, null);
+		 
+		    // -- Create a new message --
+		    final MimeMessage msg = new MimeMessage(session);
+		 
+		    // -- Set the FROM and TO fields --
+		    msg.setFrom(new InternetAddress("irawanpapangsubakti28@gmail.com"));
+		    msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+		 
+//		    if (ccEmail.length() > 0) {
+//		        msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(ccEmail, false));
+//		    }
+		 
+		    msg.setSubject("PANK");
+		    msg.setText("HALOO", "utf-8");
+		    msg.setSentDate(new Date());
+		 
+		    SMTPTransport t = (SMTPTransport)session.getTransport("smtps");
+		 
+		    t.connect("smtp.gmail.com", "irawanpapangsubakti28@gmail.com", "28papang");
+		    t.sendMessage(msg, msg.getAllRecipients());      
+		    t.close();
 			
 //			Authenticator auth = new Authenticator() {
 //				// override the getPasswordAuthentication method
