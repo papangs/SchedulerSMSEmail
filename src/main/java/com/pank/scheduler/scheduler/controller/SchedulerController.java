@@ -172,12 +172,12 @@ public class SchedulerController {
 						                new com.twilio.type.PhoneNumber(res.getNohp()),
 						                new com.twilio.type.PhoneNumber(fromNumber),
 						                "Hi "+res.getNama()+"\n\n"+messasgeCron+"\n\n"+"Regards,\nApp").create();
-
+								
 								logger.info("[Scheaduler - ] SMS Send Successfully!! "+message.getSid());
 
 								String status = "";
 								
-								if(message.getSid().isEmpty()) {
+								if(message == null || message.getSid().isEmpty() || message.getSid() == null) {
 									status = "GAGAL";
 								}else {
 									status = "SUKSES";
@@ -205,7 +205,7 @@ public class SchedulerController {
 								props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); // SSL Factory Class
 								props.put("mail.smtp.auth", "true"); // Enabling SMTP Authentication
 								props.put("mail.smtp.port", "465"); // SMTP Port
-//								props.put("mail.smtp.starttls.enable", "true");
+								props.put("mail.smtp.starttls.enable", "true");
 
 								Authenticator auth = new Authenticator() {
 									// override the getPasswordAuthentication method
