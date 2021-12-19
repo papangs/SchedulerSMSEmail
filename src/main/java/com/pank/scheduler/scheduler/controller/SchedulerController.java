@@ -2,6 +2,7 @@ package com.pank.scheduler.scheduler.controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,6 +27,9 @@ import org.springframework.web.bind.annotation.*;
 import com.pank.scheduler.scheduler.entity.master.Subscriber;
 import com.pank.scheduler.scheduler.service.SubscriberMapper;
 import com.twilio.Twilio;
+
+import ch.qos.logback.core.joran.conditional.IfAction;
+
 import com.pank.scheduler.scheduler.constant.ConstantValidasi;
 
 @RestController
@@ -41,6 +45,8 @@ public class SchedulerController {
 	@Autowired
 	private SubscriberMapper subscriberMapper;
 
+	private String sukses = "";
+	
 	public SchedulerController() {
 		SendThread send = new SendThread();
 		send.start();
@@ -165,12 +171,30 @@ public class SchedulerController {
 								
 								Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 								com.twilio.rest.api.v2010.account.Message message = com.twilio.rest.api.v2010.account.Message.creator(
-						                new com.twilio.type.PhoneNumber("+6285741217228"),
+						                new com.twilio.type.PhoneNumber(res.getNohp()),
 						                new com.twilio.type.PhoneNumber(fromNumber),
 						                "Hi "+res.getNama()+"\n\n"+messasgeCron+"\n\n"+"Regards,\nApp").create();
 
 								logger.info("[Scheaduler - ] SMS Send Successfully!! "+message.getSid());
-							
+
+								String status = "";
+								
+								if(message.getSid().isEmpty()) {
+									status = "GAGAL";
+								}else {
+									status = "SUKSES";
+								}
+								
+								String sql = "insert into history_subcriber set \n"
+			                            + "id_subcriber='" + res.getId() + "',"
+			                            + "tanggal_kirim='" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "',"
+			                            + "jam_kirim='" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "',"
+			                            + "status='" + status + "'";
+
+			                    PreparedStatement p22 = conn.prepareStatement(sql);
+			                    p22.executeUpdate();
+			                    p22.close();
+			                    
 							}else {
 								
 								String toEmail = res.getEmail(); // can be any email id
@@ -197,11 +221,26 @@ public class SchedulerController {
 								logger.info("[Scheaduler - ] Session created");
 
 								methodEmail(session, toEmail, subjectCron, "Hi "+res.getNama()+" "+messasgeCron+" "+"Regards, App");
+
+								String status = "";
 								
+								if(sukses.equals("")) {
+									status = "GAGAL";
+								}else {
+									status = "SUKSES";
+								}
+								
+								String sql = "insert into history_subcriber set \n"
+			                            + "id_subcriber='" + res.getId() + "',"
+			                            + "tanggal_kirim='" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "',"
+			                            + "jam_kirim='" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "',"
+			                            + "status='" + status + "'";
+
+			                    PreparedStatement p22 = conn.prepareStatement(sql);
+			                    p22.executeUpdate();
+			                    p22.close();
 							}
-							
-							
-							
+
 						}
 
 					} else {
@@ -222,14 +261,6 @@ public class SchedulerController {
 		}
 	}
 	
-//	@RequestMapping(value = "scheduler", method = RequestMethod.POST)
-//	public String addData(@RequestBody String body) {
-//
-//		logger.info("[Scheaduler - ] Start Scheduler");
-//
-//		return body;
-//	}
-
 	// ========================================== FUNCTION ========================================================
 
 	private void methodEmail(Session session, String toEmail, String subject, String body) {
@@ -285,7 +316,9 @@ public class SchedulerController {
 
 			Transport.send(msg);
 
-			logger.info("[Scheaduler - ] Email Send Successfully!!");
+			sukses = "Email Send Successfully!!";
+			
+			logger.info("[Scheaduler - ] "+sukses);
 
 		} catch (Exception e) {
 			e.printStackTrace();

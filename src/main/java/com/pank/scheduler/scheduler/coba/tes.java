@@ -54,49 +54,49 @@ public class tes {
 			logger.info("[Scheaduler - ] Email Start");
 
 			Properties props = new Properties();
-		    props.setProperty("mail.smtps.host", "smtp.gmail.com");
-		    props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-		    props.setProperty("mail.smtp.socketFactory.fallback", "false");
-		    props.setProperty("mail.smtp.port", "465");
-		    props.setProperty("mail.smtp.socketFactory.port", "465");
-		    props.setProperty("mail.smtps.auth", "true");
-		    props.put("mail.smtps.quitwait", "false");
+		    props.put("mail.smtps.host", "smtp.gmail.com");
+		    props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+//		    props.put("mail.smtp.socketFactory.fallback", "false");
+		    props.put("mail.smtp.port", "465");
+		    props.put("mail.smtp.socketFactory.port", "465");
+		    props.put("mail.smtps.auth", "true");
+//		    props.put("mail.smtps.quitwait", "false");
 			 
-		    Session session = Session.getInstance(props, null);
-		 
-		    // -- Create a new message --
-		    final MimeMessage msg = new MimeMessage(session);
-		 
-		    // -- Set the FROM and TO fields --
-		    msg.setFrom(new InternetAddress("irawanpapangsubakti28@gmail.com"));
-		    msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
-		 
+//		    Session session = Session.getInstance(props, null);
+//		 
+//		    // -- Create a new message --
+//		    final MimeMessage msg = new MimeMessage(session);
+//		 
+//		    // -- Set the FROM and TO fields --
+//		    msg.setFrom(new InternetAddress("irawanpapangsubakti28@gmail.com"));
+//		    msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+//		 
 //		    if (ccEmail.length() > 0) {
 //		        msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(ccEmail, false));
 //		    }
-		 
-		    msg.setSubject("PANK");
-		    msg.setText("HALOO", "utf-8");
-		    msg.setSentDate(new Date());
-		 
-		    SMTPTransport t = (SMTPTransport)session.getTransport("smtps");
-		 
-		    t.connect("smtp.gmail.com", "irawanpapangsubakti28@gmail.com", "28papang");
-		    t.sendMessage(msg, msg.getAllRecipients());      
-		    t.close();
+//		 
+//		    msg.setSubject("PANK");
+//		    msg.setText("HALOO", "utf-8");
+//		    msg.setSentDate(new Date());
+//		 
+//		    SMTPTransport t = (SMTPTransport)session.getTransport("smtps");
+//		 
+//		    t.connect("smtp.gmail.com", "irawanpapangsubakti28@gmail.com", "28papang");
+//		    t.sendMessage(msg, msg.getAllRecipients());      
+//		    t.close();
 			
-//			Authenticator auth = new Authenticator() {
-//				// override the getPasswordAuthentication method
-//				protected PasswordAuthentication getPasswordAuthentication() {
-//					return new PasswordAuthentication("irawanpapangsubakti28@gmail.com", "28papang");
-//				}
-//			};
-//
-//			Session session = Session.getDefaultInstance(props, auth);
-//
-//			logger.info("[Scheaduler - ] Session created");
-//
-//			methodEmail(session, toEmail, "afsadsad", "sdfafsgsedf");
+			Authenticator auth = new Authenticator() {
+				// override the getPasswordAuthentication method
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication("irawanpapangsubakti28@gmail.com", "28papang");
+				}
+			};
+
+			Session session = Session.getDefaultInstance(props, auth);
+
+			logger.info("[Scheaduler - ] Session created");
+
+			methodEmail(session, toEmail, "afsadsad", "sdfafsgsedf");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

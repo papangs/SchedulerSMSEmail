@@ -6094,3 +6094,15 @@
 2021-12-19 08:33:03.026[                 ]INFO [.SchedulerController:209][Scheaduler - ] Send SMS and Email Pada Waktu = 2021-12-20 22:55:01
 2021-12-19 08:33:04.039[                 ]INFO [.SchedulerController:68][Scheaduler - ] Start Send Email 2021-12-19 08:33:04
 2021-12-19 08:33:04.043[                 ]INFO [.SchedulerController:209][Scheaduler - ] Send SMS and Email Pada Waktu = 2021-12-20 22:55:01
+2021-12-19 08:36:20.738[                 ]INFO [r.scheduler.coba.tes:50][Scheaduler - ] Start Send Email 2021-12-19 08:36:20
+2021-12-19 08:36:20.743[                 ]INFO [r.scheduler.coba.tes:54][Scheaduler - ] Email Start
+2021-12-19 08:36:20.756[                 ]INFO [r.scheduler.coba.tes:97][Scheaduler - ] Session created
+2021-12-19 08:36:20.803[                 ]INFO [r.scheduler.coba.tes:158][Scheaduler - ] Message is ready
+2021-12-19 08:37:05.360[                 ]INFO [r.scheduler.coba.tes:50][Scheaduler - ] Start Send Email 2021-12-19 08:37:05
+2021-12-19 08:37:05.364[                 ]INFO [r.scheduler.coba.tes:54][Scheaduler - ] Email Start
+2021-12-19 08:37:05.374[                 ]INFO [r.scheduler.coba.tes:97][Scheaduler - ] Session created
+2021-12-19 08:37:05.408[                 ]INFO [r.scheduler.coba.tes:158][Scheaduler - ] Message is ready
+2021-12-19 08:37:51.048[                 ]INFO [r.scheduler.coba.tes:50][Scheaduler - ] Start Send Email 2021-12-19 08:37:51
+2021-12-19 08:37:51.051[                 ]INFO [r.scheduler.coba.tes:54][Scheaduler - ] Email Start
+2021-12-19 08:37:51.060[                 ]INFO [r.scheduler.coba.tes:97][Scheaduler - ] Session created
+2021-12-19 08:37:51.091[                 ]INFO [r.scheduler.coba.tes:158][Scheaduler - ] Message is ready
