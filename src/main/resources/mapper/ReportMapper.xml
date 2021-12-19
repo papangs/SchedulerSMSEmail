@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pank.scheduler.scheduler.service.ReportMapper">
+	<cache />
+
+	<resultMap id="resReporting" type="com.pank.scheduler.scheduler.entity.master.Reporting">
+		<result column="id_subcriber" property="id_subcriber" />
+		<result column="id_report" property="id_report" />
+		<result column="tanggal_kirim" property="tanggal_kirim" />
+		<result column="jam_kirim" property="jam_kirim" />
+		<result column="status" property="status" />
+		<collection resultMap="resSubsCriber" property="subscriber"/>
+	</resultMap>
+
+	<resultMap id="resSubsCriber" type="com.pank.scheduler.scheduler.entity.master.Subscriber">
+		<result column="id" property="id" />
+		<result column="nama" property="nama" />
+		<result column="email" property="email" />
+		<result column="nohp" property="nohp" />
+		<result column="tipe" property="tipe" />
+	</resultMap>
+
+	<select id="findReportAll" resultMap="resReporting">
+		SELECT
+			s.id,
+			r.id_report,
+			r.id_subcriber,
+			s.nama,
+			s.email,
+			s.nohp,
+			s.tipe,
+			r.tanggal_kirim,
+			r.jam_kirim,
+			r.status
+		FROM
+			history_subcriber r
+			INNER JOIN subscriber s on r.id_subcriber = s.id
+		WHERE
+			tanggal_kirim
+		BETWEEN
+			#{tanggal_kirim1}
+		AND
+			#{tanggal_kirim2}
+			
+	</select>
+	
+	<select id="findReportTipe" resultMap="resReporting">
+		SELECT
+			s.id,
+			r.id_report,
+			r.id_subcriber,
+			s.nama,
+			s.email,
+			s.nohp,
+			s.tipe,
+			r.tanggal_kirim,
+			r.jam_kirim,
+			r.status
+		FROM
+			history_subcriber r
+			INNER JOIN subscriber s on r.id_subcriber = s.id
+		WHERE
+			tanggal_kirim
+		BETWEEN
+			#{tanggal_kirim1}
+		AND
+			#{tanggal_kirim2}
+		AND 
+			s.tipe = #{tipe}
+			
+	</select>
+	
+	<select id="findReportStatus" resultMap="resReporting">
+		SELECT
+			s.id,
+			r.id_report,
+			r.id_subcriber,
+			s.nama,
+			s.email,
+			s.nohp,
+			s.tipe,
+			r.tanggal_kirim,
+			r.jam_kirim,
+			r.status
+		FROM
+			history_subcriber r
+			INNER JOIN subscriber s on r.id_subcriber = s.id
+		WHERE
+			tanggal_kirim
+		BETWEEN
+			#{tanggal_kirim1}
+		AND
+			#{tanggal_kirim2}
+		AND 
+			r.status = #{status}
+			
+	</select>
+	
+	<select id="findReportTipeStatus" resultMap="resReporting">
+		SELECT
+			s.id,
+			r.id_report,
+			r.id_subcriber,
+			s.nama,
+			s.email,
+			s.nohp,
+			s.tipe,
+			r.tanggal_kirim,
+			r.jam_kirim,
+			r.status
+		FROM
+			history_subcriber r
+			INNER JOIN subscriber s on r.id_subcriber = s.id
+		WHERE
+			tanggal_kirim
+		BETWEEN
+			#{tanggal_kirim1}
+		AND
+			#{tanggal_kirim2}
+		AND 
+			s.tipe = #{tipe}
+		AND 
+			r.status = #{status}
+			
+	</select>
+
+</mapper>

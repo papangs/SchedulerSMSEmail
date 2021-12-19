@@ -18,6 +18,7 @@ import com.pank.scheduler.scheduler.entity.params.RequestParam;
 import com.pank.scheduler.scheduler.entity.params.ResponseJsonParam;
 import com.pank.scheduler.scheduler.entity.params.ResponseObjectParam;
 import com.pank.scheduler.scheduler.entity.params.ResponseParam;
+import com.pank.scheduler.scheduler.entity.subcriber.RequestSubscriber;
 import com.pank.scheduler.scheduler.service.SettingMapper;
 
 @RestController
@@ -28,6 +29,53 @@ public class SettingController {
 
 	@Autowired
 	private SettingMapper settingMapper;
+
+	private String responseCode = null;
+	private String responseDesc = null;
+	
+	public boolean validate(RequestParam requestParam) {
+
+		try {
+
+			if (requestParam.getRequestGroupParam().getGroup_param().equals("") || requestParam.getRequestGroupParam().getGroup_param().isEmpty()
+					|| requestParam.getRequestGroupParam().getGroup_param().equals(null)) {
+
+				logger.info("[Setting - Validate Params] Error Group Param");
+				responseCode = ConstantCode.ErrCode06;
+				responseDesc = ConstantCode.ErrCode06Desc;
+				return false;
+
+			}
+			
+			for (RequestKodeParam res : requestParam.getRequestKodeParam()) {
+				
+				if (res.getKode_param().equals("") || res.getKode_param().isEmpty()
+						|| res.getKode_param().equals(null)) {
+
+					logger.info("[Setting - Validate Params] Error Kode Param");
+					responseCode = ConstantCode.ErrCode07;
+					responseDesc = ConstantCode.ErrCode07Desc;
+					return false;
+
+				}else if (res.getParam().equals("") || res.getParam().isEmpty()
+						|| res.getParam().equals(null)) {
+
+					logger.info("[Setting - Validate Params] Error Param");
+					responseCode = ConstantCode.ErrCode08;
+					responseDesc = ConstantCode.ErrCode08Desc;
+					return false;
+
+				}
+			}
+
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
 	
 	@RequestMapping(value = "/updateParams", method = RequestMethod.POST)
 	public ResponseParam settingParams(@RequestBody String body) {
@@ -48,52 +96,65 @@ public class SettingController {
 			
 			requestParam = mapper.readValue(body, RequestParam.class);
 
-			Integer iTrans = updateParams(requestParam);
+			Boolean validate = validate(requestParam);
 
-			if (iTrans.equals(222)) {
+			if (validate) {
+				
+				Integer iTrans = updateParams(requestParam);
 
-				HashMap<String, Object> inp = new HashMap<String, Object>();
+				if (iTrans.equals(222)) {
 
-				inp.put("group_param", requestParam.getRequestGroupParam().getGroup_param());
-				List<SettingParam> cTrans = settingMapper.findParameterById(inp);
+					HashMap<String, Object> inp = new HashMap<String, Object>();
 
-				if (cTrans == null) {
-					
-					logger.info("[Setting - Params] Error Data is null");
-					responseObjectEmail.setRescode(ConstantCode.ErrCode99);
-					responseObjectEmail.setRescodedesc(ConstantCode.ErrCode99Desc);
+					inp.put("group_param", requestParam.getRequestGroupParam().getGroup_param());
+					List<SettingParam> cTrans = settingMapper.findParameterById(inp);
+
+					if (cTrans == null) {
+						
+						logger.info("[Setting - Params] Error Data is null");
+						responseObjectEmail.setRescode(ConstantCode.ErrCode99);
+						responseObjectEmail.setRescodedesc(ConstantCode.ErrCode99Desc);
+						
+					}else {
+						
+						logger.info("[Setting - Params] Success");
+						responseObjectEmail.setRescode(ConstantCode.ErrCode00);
+						responseObjectEmail.setRescodedesc(ConstantCode.ErrCode00Desc);
+
+						for (SettingParam res : cTrans) {
+
+							ResponseJsonParam responseJsonParam = new ResponseJsonParam();
+							
+							responseJsonParam.setId(res.getId());
+							responseJsonParam.setGroup_param(res.getGroup_param());
+							responseJsonParam.setKode_param(res.getKode_param());
+							responseJsonParam.setParam(res.getParam());
+							
+							responseJsonEmail.add(responseJsonParam);
+						}
+
+						responseEmail.setObjectSetting(responseObjectEmail);
+						responseEmail.setJsonSetting(responseJsonEmail);
+
+						return responseEmail;
+						
+					}
 					
 				}else {
-					
-					logger.info("[Setting - Params] Success");
-					responseObjectEmail.setRescode(ConstantCode.ErrCode00);
-					responseObjectEmail.setRescodedesc(ConstantCode.ErrCode00Desc);
 
-					for (SettingParam res : cTrans) {
-
-						ResponseJsonParam responseJsonParam = new ResponseJsonParam();
-						
-						responseJsonParam.setId(res.getId());
-						responseJsonParam.setGroup_param(res.getGroup_param());
-						responseJsonParam.setKode_param(res.getKode_param());
-						responseJsonParam.setParam(res.getParam());
-						
-						responseJsonEmail.add(responseJsonParam);
-					}
-
-					responseEmail.setObjectSetting(responseObjectEmail);
-					responseEmail.setJsonSetting(responseJsonEmail);
-
-					return responseEmail;
-					
+					logger.info("[Setting - Params] Error when update table Setting Params.");
+					responseObjectEmail.setRescode(ConstantCode.ErrCode63);
+					responseObjectEmail.setRescodedesc(ConstantCode.ErrCode63Desc);
 				}
 				
 			}else {
-
-				logger.info("[Setting - Params] Error when update table Setting Params.");
-				responseObjectEmail.setRescode(ConstantCode.ErrCode63);
-				responseObjectEmail.setRescodedesc(ConstantCode.ErrCode63Desc);
+				
+				responseObjectEmail.setRescode(responseCode);
+				responseObjectEmail.setRescodedesc(responseDesc);
 			}
+
+			responseEmail.setObjectSetting(responseObjectEmail);
+			responseEmail.setJsonSetting(responseJsonEmail);
 			
 			return responseEmail;
 			

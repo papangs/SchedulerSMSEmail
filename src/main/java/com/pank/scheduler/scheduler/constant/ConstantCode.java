@@ -27,5 +27,21 @@ public class ConstantCode {
 
 	public static final String ErrCode56 = "56";
 	public static final String ErrCode56Desc = "ID Not Exist";
+	
+	public static final String ErrCode06 = "06";
+	public static final String ErrCode06Desc = "Group Param tidak boleh kosong";
+	public static final String ErrCode07 = "07";
+	public static final String ErrCode07Desc = "Kode Param tidak boleh kosong";
+	public static final String ErrCode08 = "08";
+	public static final String ErrCode08Desc = "Param tidak boleh kosong";
+	
+	public static final String ErrCode09 = "09";
+	public static final String ErrCode09Desc = "Tanggal Dari tidak boleh kosong";
+	public static final String ErrCode10 = "10";
+	public static final String ErrCode10Desc = "Tanggal Sampai tidak boleh kosong";
+	public static final String ErrCode11 = "11";
+	public static final String ErrCode11Desc = "Channel Pengiriman tidak boleh kosong";
+	public static final String ErrCode12 = "12";
+	public static final String ErrCode12Desc = "Status tidak boleh kosong";
 		
 }
