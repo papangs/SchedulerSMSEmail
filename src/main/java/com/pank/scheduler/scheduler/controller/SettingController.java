@@ -18,7 +18,6 @@ import com.pank.scheduler.scheduler.entity.params.RequestParam;
 import com.pank.scheduler.scheduler.entity.params.ResponseJsonParam;
 import com.pank.scheduler.scheduler.entity.params.ResponseObjectParam;
 import com.pank.scheduler.scheduler.entity.params.ResponseParam;
-import com.pank.scheduler.scheduler.entity.subcriber.RequestSubscriber;
 import com.pank.scheduler.scheduler.service.SettingMapper;
 
 @RestController

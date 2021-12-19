@@ -28,8 +28,6 @@ import com.pank.scheduler.scheduler.entity.master.Subscriber;
 import com.pank.scheduler.scheduler.service.SubscriberMapper;
 import com.twilio.Twilio;
 
-import ch.qos.logback.core.joran.conditional.IfAction;
-
 import com.pank.scheduler.scheduler.constant.ConstantValidasi;
 
 @RestController
