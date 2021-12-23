@@ -3,14 +3,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.pank.scheduler.scheduler.service.SettingMapper" >
     <cache />
-    <resultMap id="resParam" type="com.pank.scheduler.scheduler.entity.master.Setting" >
+    <resultMap id="resParam" type="com.pank.scheduler.scheduler.entity.master.SettingParam" >
         <result column="id" property="id" />
         <result column="group_param" property="group_param" />
         <result column="kode_param" property="kode_param" />
         <result column="param" property="param" />
     </resultMap>
     
-    <select id="findParameterById" resultType="Setting">
+    <select id="findParameterById" resultType="SettingParam">
         SELECT 
 		    id,
 		    group_param,
@@ -19,7 +19,7 @@
 		FROM
 		    parameter
 		WHERE
-		    id = #{id}
+		    group_param = #{group_param}
     </select>
     
     <select id="getParam" resultType="String">
@@ -33,12 +33,12 @@
     <update id="updateParameter" parameterType="hashmap">
         UPDATE parameter 
 		    <set>
-		      <if test="group_param != null">group_param=#{group_param}</if>,
-		      <if test="kode_param != null">kode_param=#{kode_param}</if>,
 		      <if test="param != null">param=#{param}</if>
 		    </set>
 		WHERE 
-			id = #{id}
+			group_param = #{group_param}
+		AND 
+			kode_param = #{kode_param}
     </update>
     
 </mapper>
