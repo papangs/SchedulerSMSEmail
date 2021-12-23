@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pank.scheduler.scheduler.config.JwtService;
 import com.pank.scheduler.scheduler.constant.ConstantCode;
 import com.pank.scheduler.scheduler.constant.ConstantValidasi;
 import com.pank.scheduler.scheduler.entity.master.Subscriber;
@@ -34,6 +35,9 @@ public class SubcriberController {
 
 	@Autowired
 	private SubscriberMapper subscriberMapper;
+
+	@Autowired
+	private JwtService jwtService;
 
 	private String tXid;
 
@@ -124,6 +128,21 @@ public class SubcriberController {
 			return false;
 		}
 
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@RequestBody String body) {
+		String accessToken = "";
+		try {
+			
+			accessToken = jwtService.generateToken("AAAA");
+			
+			return accessToken;
+		} catch (Exception e) {
+
+			logger.debug(e.getMessage(), e);
+			return accessToken;
+		}
 	}
 
 	@RequestMapping(value = "/addData", method = RequestMethod.POST)
